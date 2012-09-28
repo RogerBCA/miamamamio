@@ -9,4 +9,5 @@ require_once 'lib/funciones.php';
 // require_once 'admin/controller/seguridad.php';
 require_once 'lib/class.query.php';
 require_once 'lib/views.php';
+// COMENTARIOS DE PRUEBA PARA GITHUB
 ?>
