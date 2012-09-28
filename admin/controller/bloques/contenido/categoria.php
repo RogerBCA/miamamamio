@@ -14,6 +14,6 @@ if (isset($v[4]) and $v[4] == 'delete' ) {
 $app = new app;
 $template_app = 'bloques/categoria/';
 $locals['upload'] = true;
-
+//ZZZZZ
 include CONTROLLER.'app.php';
 ?>
