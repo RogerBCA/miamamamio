@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+
+{% block breadcrumbs %}
+<ul>
+    <li><a href="/admin/">Inicio</a></li>
+    <li>{{ model.name }}</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="g-d-c">
+    <div class="g-d-12 g-d-f">
+        <div class="grp-module" id="app_{{ model.name|lower }}">
+            {% if model.app_url %}
+            <h2><a href="{{ model.app_url }}" class="grp-section">{{ model.name }}</a></h2>
+            {% else %}
+            <h2>{{ model.name }}</h2>
+            {% endif %}
+            {% for model in models %}
+                <div class="grp-row">
+                    {% if model.perms.change %}
+                    <a href="{{ model.admin_url }}"><strong>{{ model.name }}</strong></a>{% else %}<span><strong>{{ model.name }}</strong></span>{% endif %}
+                    {% if model.perms.add or model.perms.change %}
+                        <ul class="grp-actions">
+                            {% if model.perms.add %}<li class="grp-add-link"><a href="{{ model.admin_url }}add/">Añadir</a></li>{% endif %}
+                            {% if model.perms.change %}<li class="grp-change-link"><a href="{{ model.admin_url }}">Modificar</a></li>{% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>Usted no tiene permiso para editar nada.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

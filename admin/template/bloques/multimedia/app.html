@@ -1,0 +1,54 @@
+{% extends "app.html" %}
+
+{% block form_content %}
+<fieldset class="grp-module ">
+    <div class="grp-row grp-cells-1 active ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">&nbsp;</div>
+            <div class="c-2">
+                <input {% if datos.active %}checked="checked"{% endif %} type="checkbox" name="active" id="id_active">
+                <label for="id_active" class="vCheckboxLabel">Activo</label>
+            </div>
+        </div>
+    </div>
+    <div class="grp-row grp-cells-1 {% if errors.nombre %}grp-errors {% endif %}nombre ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_nombre" class="required">Nombre</label>
+            </div>
+            <div class="c-2">
+                <input name="nombre" value="{{ datos.nombre }}" class="vTextField" maxlength="120" type="text"
+                id="id_nombre">
+                {% if errors.nombre %}
+                <ul class="errorlist">
+                    <li>Este campo es obligatorio.</li>
+                </ul>
+                {% endif %}
+                <p class="grp-help">Título mostrado en el navegador</p>
+            </div>
+        </div>
+    </div>
+    <div class="grp-row grp-cells-1 {% if errors.imagen %}grp-errors {% endif %}imagen ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_imagen" class="required">Archivo</label>
+            </div>
+            <div class="c-2">
+                {% if edit %}
+                    <p class="file-upload">
+                        Actualmente: <a href="/media/{{ datos.imagen }}" target="_blank">{{ datos.imagen }}</a>
+                        <br>Modificar: <input type="file" name="imagen" id="id_imagen">
+                    </p>
+                {% else %}
+                <input type="file" name="imagen" id="id_imagen">
+                {% endif %}
+                {% if errors.imagen %}
+                <ul class="errorlist">
+                    <li>{{ errors.imagen }}</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</fieldset>
+{% endblock %}

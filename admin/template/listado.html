@@ -1,0 +1,113 @@
+{% extends "base_site.html" %}
+
+{% block object_tools %}
+<ul class="grp-object-tools">
+    <li>
+        <a href="add/" class="grp-add-link grp-state-focus">Añadir {{ model.name }}</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block breadcrumbs %}
+<ul>
+    <li><a href="/admin/">Inicio</a></li>
+    <li><a href="{{ model.app_url }}">{{ model.app_label }}</a></li>
+    <li>{{ model.name_plural }}</li>
+</ul>
+{% endblock %}
+
+{% block bodyclass %}grp-change-list{% endblock %}
+
+{% block content %}
+<!-- CONTENT-CONTAINER -->
+<div id="grp-content-container">
+    {% if app.listar %}
+    <div class="grp-module">
+        <div class="grp-row">
+            <div class="l-2cr-fluid l-d-6">
+                <aside class="c-1">
+                    <header style="display:none">
+                        <h1>Search</h1>
+                    </header>
+                    <!-- SEARCH -->
+                    <div id="search" class="g-d-6 g-d-f">
+                        <!-- Search Form -->
+                        <form id="grp-changelist-search" action="" method="get">
+                            <input type="text" name="q" id="grp-changelist-search" class="grp-search-field"
+                            value="">
+                            <button type="submit" value="" class="grp-search-button"></button>
+                        </form>
+                    </div>
+                    <!-- FILTERS -->
+                </aside>
+                <div class="c-2">
+                    <!-- PAGINATION TOP -->
+                    <nav class="grp-pagination">
+                        <header style="display:none">
+                            <h1>Pagination</h1>
+                        </header>
+                        <ul>
+                            <li class="grp-results"><span>{{ app.total }} total</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form id="grp-changelist-form" action="" method="post">
+
+        <section id="grp-changelist" class="">
+            <header style="display:none">
+                <h1>Results</h1>
+            </header>
+            <!-- POPUP -->
+            <!-- ERRORS -->
+            <!-- MANAGEMENT FORM -->
+            <!-- CHANGELIST-RESULTS -->
+            {% block listado %}{% endblock %}
+        </section>
+        <!-- PAGINATION BOTTOM -->
+        <div class="grp-module">
+            <div class="grp-row">
+                <nav class="grp-pagination">
+                    <header style="display:none">
+                        <h1>Pagination</h1>
+                    </header>
+                    <ul>
+                        <li class="grp-results"><span>{{ app.total }} total</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- SUBMIT ROW -->
+        <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
+            <header style="display:none">
+                <h1>Submit Options</h1>
+            </header>
+            <ul>
+                <li class="grp-float-left grp-changelist-actions">
+                    <div class="grp-changelist-actions">
+                        <select name="action" autocomplete="off">
+                            <option value="" selected="selected">---------</option>
+                            <option value="delete_selected">Eliminar Secciones seleccionado/s</option>
+                        </select>
+                        <input type="hidden" class="select-across" value="0" name="select_across">
+                        <script type="text/javascript">
+                            var _actions_icnt = "0";
+                        </script>
+                        <ul class="grp-horizontal-list grp-float-left">
+                            <li class="grp-action-counter"><span class="grp-button grp-button-state-inactive grp-action-counter"
+                                style="">seleccionados 0 de 0</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </footer>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

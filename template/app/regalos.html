@@ -1,0 +1,30 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}Regalos {{ grupo.nombre }}{% endblock %}
+
+{% block grupo_content %}
+<h2 class="title-main color4">Regalos</h2>
+
+<!-- slider -->
+<div id="slider-carousel">
+    <div id="prev4" class="buttons prev spt"></div>
+    <div id="out-carousel" class="viewport">
+        <ol id="carousel" class="overview">
+            {% for i, prod in productos %}
+            <li>
+                <div class="bg-{{ cycle([ '1', '2', '3', '4' ], i) }} inner-item">
+                    <figure class="img-div">
+                    	<a href="#"><img src="/media/{{ prod.imagen }}" alt="mia mama mio" width="170" height="165" /></a>
+                    </figure>
+					<h3 class="title-div-1"><a href="#">{{ prod.codigo }}</a></h3>
+					<h4 class="title-div-2">{{ prod.nombre }}</h4>
+                    <div class="price"><span class="coin">S/.</span> {{ prod.precio }}</div>
+                </div>
+                <div class="hook"></div>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div id="next4" class="buttons next spt"></div>
+</div>
+{% endblock %}

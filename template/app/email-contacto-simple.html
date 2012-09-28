@@ -1,0 +1,48 @@
+<body style="margin: 10px;">
+	<div style="width: 600px;">
+		<div style="margin-bottom: 0px;">
+			<div>
+				<div style="padding: 20px 0px;border: none;background-color: #ffffff;margin-bottom:5px;">
+					<table cellspacing="0" style="width:100%;">
+						<tr>
+							<td>
+								<div style="display: table;width: 100%;">
+									<div style="display: table-cell;text-align: center;    vertical-align: middle;"><img src="{{STATIC_URL}}images-email/widget-logo.png" alt='{{info.titulo}}'></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div style="padding: 20px 20px;border: 1px solid #7a7e81;background-color: #ffffff;margin-bottom:5px;">
+					<p style="font-size:15px;">Contacto</p>
+					<table cellspacing="0" style="width:100%;">
+						<tr>
+							<td style="font: normal 14px Arial, Helvetica, sans-serif; color:#000000;text-align:left;width:25%;padding: 10px 6px 10px 6px;">
+                            <strong>Nombres:</strong>
+							</td>
+							<td>{{ nombres }}</td>
+						</tr>
+						<tr>
+							<td style="font: normal 14px Arial, Helvetica, sans-serif; color:#000000;text-align:left;width:25%;padding: 10px 6px 10px 6px;">
+                            <strong>Apellidos:</strong>
+							</td>
+							<td>{{ apellidos }}</td>
+						</tr>
+						<tr>
+							<td style="font: normal 14px Arial, Helvetica, sans-serif; color:#000000;text-align:left;width:25%;padding: 10px 6px 10px 6px;">
+                            <strong>Email:</strong>
+							</td>
+							<td>{{ email }}</td>
+						</tr>
+						<tr>
+							<td style="font: normal 14px Arial, Helvetica, sans-serif; color:#000000;text-align:left;width:25%;padding: 10px 6px 10px 6px;">
+                            <strong>Consulta:</strong>
+							</td>
+							<td>{{ asunto }}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

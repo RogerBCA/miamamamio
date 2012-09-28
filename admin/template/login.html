@@ -1,0 +1,53 @@
+{% extends "base_site.html" %}
+
+{% block bodyclass %}grp-login{% endblock %}
+{% block content_class %}{% endblock %}
+{% block content_title %}{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript">
+        (function($) {
+            $(window).load(function(){ $('#id_username').focus(); });
+        })(grp.jQuery);
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+    <div class="g-d-c g-d-12 g-centered">
+        <div class="grp-login">
+            {% if errors %}<p class="errornote grp-login-errors">{{ errors.mensaje }}</p>{% endif %}
+            <form action="{{ app_path }}" method="post" id="grp-login-form">
+                <fieldset class="grp-module">
+                    <div class="grp-row">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label for="id_username" class="required">Usuario:</label></div>
+                            <div class="c-2">
+                                <input type="text" name="username" id="id_username" />
+                                {% if errors.username %}{{ errors.username }}{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grp-row">
+                        <div class="l-2c-fluid l-d-4">
+                            <div class="c-1"><label for="id_password" class="required">Contraseña:</label></div>
+                            <div class="c-2">
+                                <input type="password" name="password" id="id_password" />
+                                <input type="hidden" name="this_is_the_login_form" value="1" />
+                                <input type="hidden" name="next" value="{{ next }}" />
+                                {% if errors.password %}{{ errors.password }}{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="grp-module grp-submit-row">
+                    <ul>
+                        <li><input type="submit" name="session-login" class="grp-button" value="Iniciar sesión" /></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

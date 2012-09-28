@@ -1,0 +1,15 @@
+{% extends "base_site.html" %}
+
+{% block object_tools %}{% endblock %}
+
+{% block breadcrumbs %}
+<ul>
+    <li><a href="/admin/">Inicio</a></li>
+</ul>
+{% endblock %}
+
+{% block bodyclass %}grp-change-list{% endblock %}
+
+{% block content %}
+    {{ mensaje|raw }}
+{% endblock %}

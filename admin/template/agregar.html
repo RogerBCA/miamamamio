@@ -1,0 +1,45 @@
+{% extends "base_site.html" %}
+
+{% block breadcrumbs %}
+<ul>
+    <li><a href="/admin/">Inicio</a></li>
+    <li><a href="{{ model.app_url }}">{{ model.app_label }}</a></li>
+    <li><a href="{{ model.admin_url }}">{{ model.name_plural }}</a></li>
+    <li>{{ title }}</li>
+</ul>
+{% endblock %}
+
+{% block bodyclass %}grp-change-list{% endblock %}
+
+{% block content %}
+<!-- CONTENT-CONTAINER -->
+<div id="grp-content-container">
+    <form id="grp-changelist-form" action="" method="post">
+        <section id="grp-changelist" class="">
+            {% if errors %}
+            <p class="errornote">Por favor, corrija los siguientes errores.</p>
+            <ul class="errorlist"></ul>
+            {% endif %}
+            {% block form_content %}{% endblock %}
+        </section>
+        <!-- SUBMIT ROW -->
+        <footer class="grp-module grp-submit-row grp-fixed-footer">
+            <header style="display:none">
+                <h1>Submit Options</h1>
+            </header>
+            <ul>
+                <li>
+                    <input type="submit" value="Grabar" class="grp-button grp-default" name="_save">
+                </li>
+                <li>
+                    <input type="submit" value="Grabar y añadir otro" class="grp-button" name="_addanother">
+                </li>
+                <li>
+                    <input type="submit" value="Grabar y continuar editando" class="grp-button"
+                    name="_continue">
+                </li>
+            </ul>
+        </footer>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<!-- icon FB -->
+<section id="fb-aside">
+    <div id="fb-inner">
+        <img src="{{ STATIC_URL }}images/fb-comment.png" alt="FB" />
+    </div>
+</section>
+<div id="wrap" class="points">
+    {% include 'app/header.html' %}
+    <!-- content -->
+    {% block sec_content %}
+    <section id="content-menu">
+        <aside id="aside-menu">
+            <nav>
+                <ul>
+                    {% if grupo.nav_1 %}
+                    <li id="item-1">
+                        <a href="/{{ grupo.slug }}/tendencia/" class="spt {% if slug1 == 'tendencia' %}current{% endif %}">Tendencia</a>
+                    </li>
+                    {% endif %}
+                    {% if grupo.nav_2 %}
+                    <li id="item-2">
+                        <a href="/{{ grupo.slug }}/coleccion/" class="spt {% if slug1 == 'coleccion' %}current{% endif %}">Colección</a>
+                    </li>
+                    {% endif %}
+                    {% if grupo.nav_3 %}
+                    <li id="item-3">
+                        <a href="/{{ grupo.slug }}/regalos/" class="spt {% if slug1 == 'regalos' %}current{% endif %}">Regalos</a>
+                    </li>
+                    {% endif %}
+                    {% if grupo.nav_4 %}
+                    <li id="item-4">
+                        <a href="/{{ grupo.slug }}/favoritos/" class="spt {% if slug1 == 'favoritos' %}current{% endif %}">Favoritos del mes</a>
+                    </li>
+                    {% endif %}
+                    {% if grupo.nav_5 %}
+                    <li id="item-5">
+                        <a href="/{{ grupo.slug }}/promociones/" class="spt {% if slug1 == 'promociones' %}current{% endif %}">Promociones</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </aside>
+        <section id="main">
+            {% block grupo_content %}{% endblock %}
+        </section>
+    </section>
+    {% endblock %}
+    {% include 'app/footer.html' %}
+</div>
+{% endblock %}

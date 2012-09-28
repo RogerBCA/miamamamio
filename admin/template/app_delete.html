@@ -1,0 +1,33 @@
+{% extends "base_site.html" %}
+
+{% block breadcrumbs %}
+<ul>
+    <li><a href="/admin/">Inicio</a></li>
+    <li><a href="{{ model.app_url }}">{{ model.app_label }}</a></li>
+    <li><a href="{{ model.admin_url }}">{{ model.name_plural }}</a></li>
+    <li>Eliminar</li>
+</ul>
+{% endblock %}
+
+{% block bodyclass %}grp-delete-confirmation{% endblock %}
+
+{% block content %}
+<!-- CONTENT-CONTAINER -->
+<div id="grp-content-container">
+    <div class="g-d-c">
+        {% block form_content %}{% endblock %}
+        <form action="" method="post">
+            <div class="grp-module grp-submit-row grp-fixed-footer">
+                <ul>
+                    <li class="grp-float-left"><a href="{{ model.admin_url }}{{ datos.id }}/" class="grp-button grp-cancel-link">Cancel</a>
+                    </li>
+                    <li>
+                        <input type="submit" value="Sí, estoy seguro" class="grp-button grp-default">
+                    </li>
+                </ul>
+                <input type="hidden" name="post" value="yes">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

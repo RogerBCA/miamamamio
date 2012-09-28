@@ -1,0 +1,11 @@
+{% extends "app_delete.html" %}
+
+{% block form_content %}
+<div class="grp-group">
+    <h2>¿Está seguro de que quiere borrar los Seccion "{{ datos.nombre }}"? Se borrarán los siguientes objetos relacionados:</h2>
+    <ul class="grp-nested-list">
+        <li>Seccion: <a href="{{ model.admin_url }}{{ datos.id }}/">{{ datos.nombre }}</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

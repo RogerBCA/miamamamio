@@ -1,0 +1,64 @@
+{% extends "app.html" %}
+
+{% block extrahead %}
+<script src="/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+<script src="/static/grappelli/tinymce_setup/tinymce_setup.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block form_content %}
+<fieldset class="grp-module ">
+
+    <div class="grp-row grp-cells-1 active ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">&nbsp;</div>
+            <div class="c-2">
+                <input {% if datos.active %}checked="checked"{% endif %} type="checkbox" name="active" id="id_active">
+                <label for="id_active" class="vCheckboxLabel">Activo</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.image %}grp-errors {% endif %}image ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_image" class="required">Imagen</label>
+            </div>
+            <div class="c-2">
+                <select name="image" id="id_image">
+                    <option value="" selected="selected">---------</option>
+                    {% for c in choice1 %}
+                    <option value="{{ c.id }}" {% if c.id == datos.image_id %}selected="selected"{% endif %} >{{ c.nombre }}</option>
+                    {% endfor %}
+                </select>
+                {% if errors.image %}
+                <ul class="errorlist">
+                    <li>Selecciona una imagen.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.grupo %}grp-errors {% endif %}grupo ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_grupo" class="required">Grupo</label>
+            </div>
+            <div class="c-2">
+                <select name="grupo" id="id_grupo">
+                    <option value="" selected="selected">---------</option>
+                    {% for c in choice2 %}
+                    <option value="{{ c.id }}" {% if c.id == datos.grupo_id %}selected="selected"{% endif %} >{{ c.nombre }}</option>
+                    {% endfor %}
+                </select>
+                {% if errors.grupo %}
+                <ul class="errorlist">
+                    <li>Obligatorio.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+{% endblock %}

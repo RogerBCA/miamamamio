@@ -1,0 +1,48 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}HOME{% endblock %}
+
+{% block sec_content %}
+<section id="content">
+    <h2 class="title-content title-normal">Contáctanos</h2>
+    <div id="section-contact">
+        <ul id="list-contact">
+            <li id="info-1">
+                <h5>Encuéntranos en:</h5>
+                <p>C.C. Open Plaza Angamos,
+                <br/>3er Piso - Tienda 70.</p>
+            </li>
+            <li id="info-2">
+                <h5>Llámanos al:</h5>
+                <p>225-1923</p>
+            </li>
+            <li id="info-3">
+                <h5>Escríbenos al:</h5>
+                <p><a href="mailto:marketing@miamamamio.com" class="link-text">marketing@miamamamio.com</a></p>
+            </li>
+            <li id="info-4">
+                <h5>Déjanos un mensaje</h5>
+                <div id="form-contact">
+                    <form action="#">
+                        <input class="input" placeholder="Nombre" />
+                        <input class="input" placeholder="E-Mail" />
+                        <textarea class="textarea" placeholder="Mensaje"></textarea>
+                        <p class="text-small">
+                            <label>
+                                <input type="checkbox" /> <span>Deseo recibir notificaciones a mi e-mail.</span>
+                            </label>
+                        </p>
+                        <fieldset>
+                            <input type="submit" id="submit" class="spt btn" />
+                            <input type="reset" id="reset" class="spt btn" />
+                        </fieldset>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        <div id="map">
+            <img src="/static/images/map.jpg" alt="Map" />
+        </div>
+    </div>
+</section>
+{% endblock %}

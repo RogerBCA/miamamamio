@@ -1,0 +1,17 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}Coleccion {{ grupo.nombre }}{% endblock %}
+
+{% block grupo_content %}
+<h2 class="title-seccion">Colección</h2>
+<div id="seccion-img" class="load-img">
+    <div id="in-seccion-img">
+    	{% if slide.imagen %}
+        <img src="/media/{{ slide.imagen }}" alt="mia mama mio" />
+        {% endif %}
+		<a href="#" class="links-cols" id="links-col1">Making of de la colección</a>
+        <a href="#" class="links-cols" id="links-col2">Bebos</a>
+		<a href="#" class="links-cols" id="links-col3">Bebas</a>
+    </div>
+</div>
+{% endblock %}

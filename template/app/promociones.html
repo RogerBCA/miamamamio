@@ -1,0 +1,45 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}Coleccion {{ grupo.nombre }}{% endblock %}
+
+{% block grupo_content %}
+<!-- slider -->
+<div id="prev" class="spt"></div>
+<div id="next" class="spt"></div>
+<div id="out-slider-main">
+    <section id="slider-main">
+        <div class="slider-main"><a href="#"><img src="/static/images/slide1-promo.jpg" alt="mia mama mamio" /></a></div>   
+        <div class="slider-main"><a href="#"><img src="/static/images/slide1-promo.jpg" alt="mia mama mamio" /></a></div>
+        <div class="slider-main"><a href="#"><img src="/static/images/slide1-promo.jpg" alt="mia mama mamio" /></a></div>
+    </section>
+</div>
+<section class="article-promo">
+	<h2 class="title-main color3">Promociones</h2>         	
+    <!-- slider -->
+    <div id="carousel-promo">
+    	<div id="prev3" class="buttons prev spt"></div>
+    	<div class="viewport">
+            <ol class="overview">
+                <!-- 1 -->
+                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 2 -->                    
+                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 3 -->                    
+                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 4 -->                    
+                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 5 -->
+                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 6 -->                    
+                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 7 -->                    
+                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- 8 -->                    
+                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
+                <!-- end -->
+            </ol>
+        </div>
+        <div id="next3" class="buttons next spt"></div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "listado.html" %}
+
+{% block listado %}
+<div class="grp-module grp-changelist-results">
+    <table id="result_list" cellspacing="0" class="grp-sortable">
+        <thead>
+            <tr>
+                <th scope="col" class="action-checkbox-column">
+                    <div class="grp-text"><span><input type="checkbox" id="action-toggle" style=""></span>
+                    </div>
+                </th>
+                <th scope="col" class="sortable">
+                    <div class="grp-text"><a>Nombre</a>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i, td in app.listar %}
+            <tr class="grp-row grp-row-{{ cycle(['even', 'odd'], i) }}">
+                <td class="action-checkbox">
+                    <input type="checkbox" class="action-select" value="2" name="_selected_action">
+                </td>
+                <th>
+                    <a href="{{ td.id }}/">{{ td.nombre }}</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

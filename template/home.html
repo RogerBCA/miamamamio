@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section id="fb-aside">
+    <div id="fb-inner">
+        <img src="{{ STATIC_URL }}images/fb-comment.png" alt="FB" />
+    </div>
+</section>
+<div id="wrap" class="points">
+    <!-- header -->
+    <header id="head">
+        <div class="inner" id="head-home">
+            <h1 id="logo" class="png-bg"><a class="logo spt" href="/" title="mia mama mio">mia mama mio</a> </h1>
+        </div>
+    </header>
+    <!-- content -->
+    <section id="presentation">
+        <div class="inner">
+            <nav id="nav-intro">
+            	<a href="{{ SITE_URL }}bebe/" id="link-1">Bebe</a>
+				<a href="{{ SITE_URL }}mama/" id="link-2">Mamá</a>
+				<a href="{{ SITE_URL }}deco/" id="link-3">Deco</a>
+            </nav>
+            <div id="home-intro">
+                <section id="intro-fade">
+                    <div class="intro-fade load-img">
+                        <img src="{{ STATIC_URL }}images/home1.jpg" alt="mia mama mio" />
+                    </div>
+                    <div class="intro-fade load-img">
+                        <img src="{{ STATIC_URL }}images/home1.jpg" alt="mia mama mio" />
+                    </div>
+                    <div class="intro-fade load-img">
+                        <img src="{{ STATIC_URL }}images/home1.jpg" alt="mia mama mio" />
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer id="footer">
+        <div class="points">
+            <div class="inner">
+                <p id="aside-text"><em>mia mama mio</em> 2012 © Todos los derechos reservados.</p>
+                <div id="links-logo"> <a href="#" title="Facebook" id="facebook-f" class="spt">Facebook</a>
+                    <a href="#" title="Pinterest" id="pinterest-f" class="spt">Pinterest</a>
+                    <a title="STAFF CREATIVA" target="_blank" href="http://www.staffcreativa.com/"
+                        id="staff-creativa" class="spt">Diseñador por <em>STAFF CREATIVA</em></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}

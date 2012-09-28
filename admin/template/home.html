@@ -1,0 +1,69 @@
+{% extends "base_site.html" %}
+
+{% block breadcrumbs %}
+    <ul class="grp-horizontal-list">
+        <li>Inicio</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+<div class="g-d-c">
+    <div class="g-d-12 g-d-f">
+        {% for app in app_list %}
+            <div class="grp-module" id="app_{{ app.name|lower }}">
+                {% if app.app_url %}
+                <h2><a href="{{ app.app_url }}" class="grp-section">{{ app.name }}</a></h2>
+                {% else %}
+                <h2>{{ app.name }}</h2>
+                {% endif %}
+                {% for model in app.models %}
+                    <div class="grp-row">
+                        {% if model.perms.change %}
+                        <a href="{{ model.admin_url }}"><strong>{{ model.name }}</strong></a>{% else %}<span><strong>{{ model.name }}</strong></span>{% endif %}
+                        {% if model.perms.add or model.perms.change %}
+                            <ul class="grp-actions">
+                                {% if model.perms.add %}<li class="grp-add-link"><a href="{{ model.admin_url }}add/">Añadir</a></li>{% endif %}
+                                {% if model.perms.change %}<li class="grp-change-link"><a href="{{ model.admin_url }}">Modificar</a></li>{% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Usted no tiene permiso para editar nada.</p>
+        {% endfor %}
+    </div>
+    <div class="g-d-6" id="column_2">
+        <div id="module_4" class="grp-module link-list grp-dashboard-module">
+             <h2 class="module_title">Soporte</h2>
+
+            <ul class="grp-listing-small">
+                <li class="grp-row">
+                    <a class="grp-link-internal" href="http://rogerca.com/" target="_blank">Info</a>
+                </li>
+                <li class="grp-row">
+                    <a class="grp-link-external" href="mailto:info@rogerca.com" title="Escríbenos">info@rogerca.com</a>
+                </li>
+            </ul>
+        </div>
+        <!--
+        <div id="module_5" class="grp-module actions grp-dashboard-module">
+             <h2 class="module_title">Acciones Recientes</h2>
+
+            <div class="grp-module">
+                <ul class="grp-listing-small">
+                    <li class="grp-row grp-add-link">
+                        <a href="app/seccion/2/">prueba</a>
+                        <span class="grp-font-color-quiet">Seccion</span>
+                    </li>
+                    <li class="grp-row grp-add-link">
+                        <a href="app/seccion/1/">prueba</a>
+                        <span class="grp-font-color-quiet">Seccion</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+{% endblock %}

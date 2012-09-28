@@ -1,0 +1,34 @@
+<div id="grp-navigation">
+    <h1 id="grp-admin-title">{{ app_name }}</h1>
+    {% if user.is_authenticated and user.is_staff %}
+        <ul id="grp-user-tools">
+            <!-- Username -->
+            <li class="grp-user-options-container grp-collapse grp-closed">
+                <a href="javascript://" class="user-options-handler grp-collapse-handler">{{ user.nick }}</a>
+                {% if login != False %}
+                    <ul class="grp-user-options">
+                        <li><a href="{{ password_change_url }}">Cambiar Contraseña</a></li>
+                        <li><a href="/admin/?app=login&type=cerrar-session">Cerrar Sesion</a></li>
+                    </ul>
+                {% endif %}
+            </li>
+            <!-- Userlinks -->
+            {% block userlinks %}
+                <!-- JS tests -->
+
+                <!-- Documentation -->
+
+            {% endblock %}
+        </ul>
+    {% endif %}
+    {% block nav_global %}
+    {% endblock %}
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    (function($) {
+        $(document).ready(function() {
+            $("#grp-navigation .grp-collapse").grp_collapsible();
+        });
+    })(grp.jQuery);
+</script>

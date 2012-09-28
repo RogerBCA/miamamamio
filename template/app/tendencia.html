@@ -1,0 +1,16 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}Tendencia {{ grupo.nombre }}{% endblock %}
+
+{% block grupo_content %}
+<h2 class="title-seccion color5">Tendencia {{ grupo.nombre }}</h2>
+<div id="seccion-img">
+    <div id="in-seccion-img" class="load-img">
+    	{% if slide.imagen %}
+        <img src="/media/{{ slide.imagen }}" alt="mia mama mio" />
+        {% endif %}
+        <a href="tendencias-bebe-bebos.html" class="links-cols" id="links-col4">Bebos</a>
+        <a href="tendencias-bebe-bebas.html" class="links-cols" id="links-col5">Bebas</a>
+    </div>
+</div>
+{% endblock %}
