@@ -1,0 +1,113 @@
+{% extends "app.html" %}
+
+{% block form_content %}
+<fieldset class="grp-module ">
+    <div class="grp-row grp-cells-1 active ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">&nbsp;</div>
+            <div class="c-2">
+                <input {% if datos.active %}checked="checked"{% endif %} type="checkbox" name="active" id="id_active">
+                <label for="id_active" class="vCheckboxLabel">Activo</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.grupo %}grp-errors {% endif %}grupo ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_grupo" class="required">Grupo</label>
+            </div>
+            <div class="c-2">
+                <select name="grupo" id="id_grupo">
+                    <option value="" selected="selected">---------</option>
+                    {% for c in choice1 %}
+                    <option value="{{ c.id }}" {% if c.id == datos.grupo_id %}selected="selected"{% endif %} >{{ c.nombre }}</option>
+                    {% endfor %}
+                </select>
+                {% if errors.grupo %}
+                <ul class="errorlist">
+                    <li>Selecciona un grupo.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.nombre %}grp-errors {% endif %}nombre ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_nombre" class="required">Nombre</label>
+            </div>
+            <div class="c-2">
+                <input id="id_nombre" type="text" class="vTextField" name="nombre" maxlength="120" value="{{ datos.nombre }}">
+                {% if errors.nombre %}
+                <ul class="errorlist">
+                    <li>Este campo es obligatorio.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 enlace ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_enlace">Enlace</label>
+            </div>
+            <div class="c-2">
+                <input id="id_enlace" type="text" class="vTextField" name="enlace" maxlength="240" value="{{ datos.enlace }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.icono %}grp-errors {% endif %}icono ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_icono" class="required">Icono</label>
+            </div>
+            <div class="c-2">
+                <select name="icono" id="id_icono">
+                    <option value="" selected="selected">---------</option>
+                    {% for c in choice2 %}
+                    <option value="{{ c.id }}" {% if c.id == datos.icono_id %}selected="selected"{% endif %} >{{ c.nombre }}</option>
+                    {% endfor %}
+                </select>
+                {% if errors.icono %}
+                <ul class="errorlist">
+                    <li>Selecciona una imagen.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 slug ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_slug">Slug</label>
+            </div>
+            <div class="c-2">
+                <input id="id_slug" type="text" class="vTextField" name="slug" maxlength="100" value="{{ datos.slug }}">
+                <p class="grp-help"><b>solo letras,numeros y guiones(-) para enlaces. Se genera automatico al estar vacio</b>
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.position %}grp-errors {% endif %}position ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_position" class="required">Orden</label>
+            </div>
+            <div class="c-2">
+                <input id="id_position" type="text" class="vIntegerField" value="{{ datos.position }}" name="position">
+                {% if errors.position %}
+                <ul class="errorlist">
+                    <li>Introduzca un número entero.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+{% endblock %}

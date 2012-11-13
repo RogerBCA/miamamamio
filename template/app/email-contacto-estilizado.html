@@ -1,7 +1,6 @@
 {% spaceless %}
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 
 <html lang="es">
 <head>
@@ -98,7 +97,7 @@
     
       <table width="600" cellpadding="0" cellspacing="0" border="0" class="table">
     <tr>
-      <td width="250" bgcolor="#e4e4e4" class="logocell"><img border="0" src="{{STATIC_URL}}images-email/spacer.gif" width="1" height="20" class="hide"><br class="hide"><img src="{{STATIC_URL}}images-email/widget-logo.png" width="178" height="76" alt="Campaign Monitor" style="-ms-interpolation-mode:bicubic;"><br><img border="0" src="{{STATIC_URL}}images-email/spacer.gif" width="1" height="10" class="hide"><br class="hide"></td>
+      <td width="250" bgcolor="#e4e4e4" class="logocell"><img border="0" src="{{STATIC_URL}}images-email/spacer.gif" width="1" height="20" class="hide"><br class="hide"><img src="{{STATIC_URL}}images-email/widget-logo.png" height="76" alt="Campaign Monitor" style="-ms-interpolation-mode:bicubic;"><br><img border="0" src="{{STATIC_URL}}images-email/spacer.gif" width="1" height="10" class="hide"><br class="hide"></td>
       <td align="right" width="350" class="hide" style="color:#a6a6a6;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-shadow: 0 1px 0 #ffffff;" valign="top" bgcolor="#e4e4e4"><img border="0" src="{{STATIC_URL}}images-email/spacer.gif" width="1" height="63"><br><span>{{info.titulo|upper}}:&nbsp;</span><strong><span style="text-transform:uppercase;"> <currentmonthname> <currentyear></span></strong> <span>CONTACTO&nbsp;</span></td>
     </tr>
     </table>
@@ -123,27 +122,21 @@
               <table cellspacing="10" style="width:100%;" id='table_contacto'>
                 <tr>
                   <td style='width: 20%;'>
-                    <strong>Nombres: </strong> 
+                    <strong>Nombre y Apellido: </strong> 
                   </td>
-                  <td>{{ nombres }}</td>
+                  <td>{{ nombre }}</td>
                 </tr>
                 <tr>
                   <td style='width: 20%;'>
-                    <strong>Apellidos: </strong>
-                  </td>
-                  <td>{{ apellidos }}</td>
-                </tr>
-                <tr>
-                  <td style='width: 20%;'>
-                    <strong>Email: </strong>
+                    <strong>E-mail: </strong>
                   </td>
                   <td>{{ email }}</td>
                 </tr>
                 <tr>
                   <td style='width: 20%;'>
-                    <strong>Consulta: </strong>
+                    <strong>Mensaje: </strong>
                   </td>
-                  <td>{{ asunto|safe }}</td>
+                  <td>{{ mensaje }}</td>
                 </tr>
               </table>
 

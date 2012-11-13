@@ -2,15 +2,33 @@
 
 {% block title %}Tendencia {{ grupo.nombre }}{% endblock %}
 
+{% block css_extra %}
+<style type="text/css">
+#seccion-img .links-cold{ position:absolute; z-index:3; text-indent:-999em }
+{% for i, e in enlaces %}
+#links-cold{{ i }}{ right:0; top:{{ (i*79)+18 }}px; background: url('/media/{{ e.imagen }}'); width: 151px; height: 73px; }
+#links-cold{{ i }}:hover{ background-position: -156px 0 }
+{% endfor %}
+</style>
+{% endblock %}
+
 {% block grupo_content %}
 <h2 class="title-seccion color5">Tendencia {{ grupo.nombre }}</h2>
 <div id="seccion-img">
     <div id="in-seccion-img" class="load-img">
     	{% if slide.imagen %}
-        <img src="/media/{{ slide.imagen }}" alt="mia mama mio" />
+        <img src="/media/{{ slide.imagen }}" alt="mia mama mio" width="920" height="446" />
         {% endif %}
-        <a href="tendencias-bebe-bebos.html" class="links-cols" id="links-col4">Bebos</a>
-        <a href="tendencias-bebe-bebas.html" class="links-cols" id="links-col5">Bebas</a>
+        {% for i, e in enlaces %}
+        	{% if e.enlace %}
+			<a href="{{ e.enlace }}" class="links-cold" id="links-cold{{ i }}">{{ e.nombre }}</a>
+			{% else %}
+			<a href="{{ e.slug }}/" class="links-cold" id="links-cold{{ i }}">{{ e.nombre }}</a>
+			{% endif %}
+        {% endfor %}
+        {% if return %}
+        <a id="links-col6" class="links-cols" onclick="history.back()" style="cursor: pointer" >Volver a colección</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

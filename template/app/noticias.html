@@ -1,79 +1,26 @@
 {% extends 'app/grupo.html' %}
 
-{% block title %}HOME{% endblock %}
+{% block title %}Noticias{% endblock %}
 
 {% block sec_content %}
 <section id="content">
     <h2 class="title-content2">Noticias</h2>
     <ol class="flow-news">
-        <!-- 1 -->
+        {% for n in noticias %}
         <li class="list-news">
             <figure class="img-shadow">
-                <a href="#" class="ancla-flow"><img src="/static/images/img-noticia1.jpg" alt="mia mami mio" /></a>
+                <a href="/noticias/{{ n.id }}/" class="ancla-flow">
+                    <img src="/static/images/img-noticia1.jpg" alt="mia mami mio" />
+                </a>
             </figure>
             <div class="text-news">
-                <h3 class="title-news"><a href="#">Proin nonummy elit nec erat</a></h3>
-                <p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci
-                    sed molestie congue, erat pede consectr tellus.</p>
+                <h3 class="title-news"><a href="/noticias/{{ n.id }}/">{{ n.nombre }}</a></h3>
+                <p>{{ n.descrip|raw|striptags|slice(0, 125) }}</p>
             </div>
         </li>
-        <!-- 2 -->
-        <li class="list-news">
-            <figure class="img-shadow">
-                <a href="#" class="ancla-flow"><img src="/static/images/img-noticia1.jpg" alt="mia mami mio" /></a>
-            </figure>
-            <div class="text-news">
-                <h3 class="title-news"><a href="#">Proin nonummy elit nec erat</a></h3>
-                <p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci
-                    sed molestie congue, erat pede consectr tellus.</p>
-            </div>
-        </li>
-        <!-- 3 -->
-        <li class="list-news">
-            <figure class="img-shadow">
-                <a href="#" class="ancla-flow"><img src="/static/images/img-noticia1.jpg" alt="mia mami mio" /></a>
-            </figure>
-            <div class="text-news">
-                <h3 class="title-news"><a href="#">Proin nonummy elit nec erat</a></h3>
-                <p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci
-                    sed molestie congue, erat pede consectr tellus.</p>
-            </div>
-        </li>
-        <!-- 4 -->
-        <li class="list-news">
-            <figure class="img-shadow">
-                <a href="#" class="ancla-flow"><img src="/static/images/img-noticia1.jpg" alt="mia mami mio" /></a>
-            </figure>
-            <div class="text-news">
-                <h3 class="title-news"><a href="#">Proin nonummy elit nec erat</a></h3>
-                <p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci
-                    sed molestie congue, erat pede consectr tellus.</p>
-            </div>
-        </li>
-        <!-- 5 -->
-        <li class="list-news">
-            <figure class="img-shadow">
-                <a href="#" class="ancla-flow"><img src="/static/images/img-noticia1.jpg" alt="mia mami mio" /></a>
-            </figure>
-            <div class="text-news">
-                <h3 class="title-news"><a href="#">Proin nonummy elit nec erat</a></h3>
-                <p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci
-                    sed molestie congue, erat pede consectr tellus.</p>
-            </div>
-        </li>
-        <!-- 6 -->
-        <li class="list-news">
-            <figure class="img-shadow">
-                <a href="#" class="ancla-flow"><img src="/static/images/img-noticia1.jpg" alt="mia mami mio" /></a>
-            </figure>
-            <div class="text-news">
-                <h3 class="title-news"><a href="#">Proin nonummy elit nec erat</a></h3>
-                <p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci
-                    sed molestie congue, erat pede consectr tellus.</p>
-            </div>
-        </li>
-        <!-- end -->
+        {% endfor %}
     </ol>
+    <!--
     <ol class="pager">
         <li class="page-current"><a href="#">1</a>
         </li>
@@ -84,5 +31,6 @@
         <li><a href="#">4</a>
         </li>
     </ol>
+    -->
 </section>
 {% endblock %}

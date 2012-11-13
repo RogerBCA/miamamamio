@@ -7,28 +7,28 @@
 <div id="prev" class="spt"></div>
 <div id="next" class="spt"></div>
 <div id="out-slider-main">
-  <section id="slider-main">
-    {% for img in slide %}
-    <div class="slider-main">
-      {% if img.enlace %}
-      <a href="{{img.enlace}}"><img src="/media/{{ img.imagen }}" alt="mia mama mamio" /></a>
-      {% else %}
-      <img src="/media/{{ img.imagen }}" alt="mia mama mamio" />
-      {% endif %}
-    </div>
-    {% endfor %}
-  </section>
+	<section id="slider-main">
+		{% for img in slide %}
+		<div class="slider-main">
+			{% if img.enlace %}
+			<a href="{{img.enlace}}"><img src="/media/{{ img.imagen }}" alt="mia mama mamio" /></a>
+			{% else %}
+			<img src="/media/{{ img.imagen }}" alt="mia mama mamio" />
+			{% endif %}
+		</div>
+		{% endfor %}
+	</section>
 </div>
 {% endif %}
 <article class="article-main">
-    <div class="text-main">
-      <h2 class="title-main">{{grupo.nombre}}</h2>
-      <p>{{grupo.descrip|raw}}</p>
-    </div>
-    {% if grupo.imagen %}
-    <div class="img-aside">
-        <img src="/media/{{ grupo.imagen }}" alt="mia mama mio" />
-    </div>
-    {% endif %}
+	<div class="text-main">
+		<h2 class="title-main">{{grupo.nombre}}</h2>
+		<p>{{grupo.descrip|raw}}</p>
+	</div>
+	{% if grupo.imagen %}
+	<div class="img-aside">
+		<img src="/media/{{ grupo.imagen }}" alt="mia mama mio" />
+	</div>
+	{% endif %}
 </article>
 {% endblock %}

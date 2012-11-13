@@ -2,16 +2,63 @@
 
 {% block title %}Coleccion {{ grupo.nombre }}{% endblock %}
 
+{% block css_extra %}
+<style type="text/css">
+#seccion-img .links-cold{ position:absolute; z-index:3; text-indent:-999em }
+{% for i, e in enlaces %}
+{% if i == 0 %}
+#links-cold{{ i }}{ left:212px; top:182px; background: url('/media/{{ e.imagen }}'); width: 194px; height: 118px;}
+#links-cold{{ i }}:hover{ background-position:-199px 0px }
+{% elseif i == 1 %}
+#links-cold{{ i }}{ left:570px; top:170px; background: url('/media/{{ e.imagen }}'); width: 187px; height: 98px;}
+#links-cold{{ i }}:hover{ background-position:-192px 0px }}
+{% endif %}
+{% endfor %}
+</style>
+{% endblock %}
+
 {% block grupo_content %}
+{% if slide.video %}
+<div class="modal hide fade" id="video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="content-modal">
+      <div class="modal-body" style="height: 320px;">
+        <iframe width="518" height="300" src="{{ slide.video|replace({'http://www.youtube.com/watch?v=': 'http://www.youtube.com/embed/'}) }}" frameborder="0" allowfullscreen></iframe>
+      </div>
+  </div>
+</div>
+{% endif %}
+
 <h2 class="title-seccion">Colección</h2>
 <div id="seccion-img" class="load-img">
     <div id="in-seccion-img">
-    	{% if slide.imagen %}
-        <img src="/media/{{ slide.imagen }}" alt="mia mama mio" />
+    	{% if slide %}
+        <img src="/media/{{ slide.imagen }}" alt="mia mama mio" width="920" height="446"  />
         {% endif %}
-		<a href="#" class="links-cols" id="links-col1">Making of de la colección</a>
-        <a href="#" class="links-cols" id="links-col2">Bebos</a>
-		<a href="#" class="links-cols" id="links-col3">Bebas</a>
+
+        {% if slider %}
+        <section id="slider-inter">
+        {% for s in slider %}
+        <img src="/media/{{ s.imagen }}" alt="mia mama mio" width="920" height="446" />
+        {% endfor %}
+    	</section>
+		<a href="#" id="links-col9" class="links-cols" title="Anterior">Anterior</a>
+		<a href="#" id="links-col7" class="links-cols" title="Siguiente">Siguiente</a>
+		<!-- <a href="#" id="links-col8" class="links-cols"><img src="/static/images/fb-like-all.png" alt="FB" /></a> -->
+        {% endif %}
+
+        {% if return %}
+        <a id="links-col6" class="links-cols" onclick="history.back()" >Volver a colección</a>
+        {% elseif slide.video %}
+		<a class="links-cols" id="links-col1" onclick="$('#video').modal('show')" style="cursor: pointer" >Making of de la colección</a>
+		{% endif %}
+        {% for i, e in enlaces %}
+        	{% if e.enlace %}
+			<a href="{{ e.enlace }}" class="links-cold" id="links-cold{{ i }}">{{ e.nombre }}</a>
+			{% else %}
+			<a href="{{ e.slug }}/" class="links-cold" id="links-cold{{ i }}">{{ e.nombre }}</a>
+			{% endif %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

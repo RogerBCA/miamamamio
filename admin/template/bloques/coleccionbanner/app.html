@@ -7,34 +7,6 @@
 
 {% block form_content %}
 <fieldset class="grp-module ">
-
-    <div class="grp-row grp-cells-1 {% if errors.position %}grp-errors {% endif %}position ">
-        <div class="l-2c-fluid l-d-4">
-            <div class="c-1">
-                <label for="id_position" class="required">Orden</label>
-            </div>
-            <div class="c-2">
-                <input id="id_position" type="text" class="vIntegerField" value="{{ datos.position }}" name="position">
-                {% if errors.position %}
-                <ul class="errorlist">
-                    <li>Introduzca un número entero.</li>
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    <div class="grp-row grp-cells-1 enlace ">
-        <div class="l-2c-fluid l-d-4">
-            <div class="c-1">
-                <label for="id_enlace">Enlace</label>
-            </div>
-            <div class="c-2">
-                <input id="id_enlace" type="text" class="vTextField" name="enlace" maxlength="240" value="{{ datos.enlace }}">
-            </div>
-        </div>
-    </div>
-
     <div class="grp-row grp-cells-1 {% if errors.image %}grp-errors {% endif %}image ">
         <div class="l-2c-fluid l-d-4">
             <div class="c-1">
@@ -73,5 +45,32 @@
         </div>
     </div>
 
+    <div class="grp-row grp-cells-1 enlace ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_enlace">Enlace</label>
+            </div>
+            <div class="c-2">
+                <input id="id_enlace" type="text" class="vTextField" name="enlace" maxlength="240" value="{{ datos.enlace }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="grp-row grp-cells-1 {% if errors.position %}grp-errors {% endif %}position ">
+        <div class="l-2c-fluid l-d-4">
+            <div class="c-1">
+                <label for="id_position" class="required">Orden</label>
+            </div>
+            <div class="c-2">
+                <input id="id_position" type="text" class="vIntegerField" value="{{ datos.position }}" name="position">
+                {% if errors.position %}
+                <ul class="errorlist">
+                    <li>Introduzca un número entero.</li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
 </fieldset>
 {% endblock %}

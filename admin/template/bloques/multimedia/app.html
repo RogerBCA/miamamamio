@@ -36,6 +36,7 @@
             <div class="c-2">
                 {% if edit %}
                     <p class="file-upload">
+                        <input type="hidden" name="imagen" value="{{ datos.imagen }}" />
                         Actualmente: <a href="/media/{{ datos.imagen }}" target="_blank">{{ datos.imagen }}</a>
                         <br>Modificar: <input type="file" name="imagen" id="id_imagen">
                     </p>

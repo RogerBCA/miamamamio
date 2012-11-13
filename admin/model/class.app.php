@@ -10,7 +10,7 @@ class bloques
 		$this->tabla = 'pb_content_type';
 		$this->db = new DB;
 
-		$app_list = $this->db->select('app_label as name from '.$this->tabla.' group by app_label;');
+		$app_list = $this->db->select('app_label as name from '.$this->tabla.' where active=1 group by app_label;');
 		if($app_list){
 			foreach ($app_list as $k => $dir) {
 				$this->app_list[$k]['name']		= $dir->name;
@@ -21,7 +21,7 @@ class bloques
 	}
 
 	public function modulos($dir){
-		$app = $this->db->select('* from '.$this->tabla.' where app_label=\''.$dir.'\' order by name;');
+		$app = $this->db->select('* from '.$this->tabla.' where app_label=\''.$dir.'\' and active=1 order by name;');
 		if ($app) {
 			$models = array();
 			foreach ($app as $k => $model) {

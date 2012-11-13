@@ -1,8 +1,38 @@
 {% extends 'app/grupo.html' %}
 
-{% block title %}HOME{% endblock %}
+{% block title %}Contacto{% endblock %}
+
+{% block js_extra %}
+<script type="text/javascript">
+    var thanks = $('#thanks');
+    var error = $('#error');
+    {% if errors.proceso  %}error.modal('show');{% endif %}
+    {% if exito.pedido  %}thanks.modal('show');{% endif %}
+</script>
+{% endblock %}
 
 {% block sec_content %}
+
+<div class="modal hide fade" id="thanks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="content-modal">
+      <div class="modal-body bg-icon">
+        <h3 class="title-modal">Gracias</h3>
+        <p>Nos pondremos en contacto contigo lo más pronto posible.</p>
+      </div>
+  </div>
+</div>
+
+<div class="modal hide fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="content-modal">
+      <div class="modal-body bg-icon">
+        <h3 class="title-modal">Error</h3>
+        <p>A ocurrido un problema...<br>Intentalo nuevamente.</p>
+      </div>
+  </div>
+</div>
+
 <section id="content">
     <h2 class="title-content title-normal">Contáctanos</h2>
     <div id="section-contact">
@@ -23,17 +53,32 @@
             <li id="info-4">
                 <h5>Déjanos un mensaje</h5>
                 <div id="form-contact">
-                    <form action="#">
-                        <input class="input" placeholder="Nombre" />
-                        <input class="input" placeholder="E-Mail" />
-                        <textarea class="textarea" placeholder="Mensaje"></textarea>
+                    <form action="" method="post">
+                        <input type="text" class="input" placeholder="Nombre" name="nombre" required="required"/>
+                        {% if errors.nombre %}
+                        <ul class="errorlist">
+                            <li>Obligatorio.</li>
+                        </ul>
+                        {% endif %}
+                        <input type="text" class="input" placeholder="E-Mail" name="email" required="required" />
+                        {% if errors.email %}
+                        <ul class="errorlist">
+                            <li>Obligatorio.</li>
+                        </ul>
+                        {% endif %}
+                        <textarea class="textarea" placeholder="Mensaje" name="mensaje" required="required"></textarea>
+                        {% if errors.mensaje %}
+                        <ul class="errorlist">
+                            <li>Obligatorio.</li>
+                        </ul>
+                        {% endif %}
                         <p class="text-small">
                             <label>
-                                <input type="checkbox" /> <span>Deseo recibir notificaciones a mi e-mail.</span>
+                                <input type="checkbox" name="notificar" checked="checked" /> <span>Deseo recibir notificaciones a mi e-mail.</span>
                             </label>
                         </p>
                         <fieldset>
-                            <input type="submit" id="submit" class="spt btn" />
+                            <input type="submit" id="submit" class="spt btn" name="submit-contacto" style="margin-right: 10px;"/> 
                             <input type="reset" id="reset" class="spt btn" />
                         </fieldset>
                     </form>

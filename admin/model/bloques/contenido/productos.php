@@ -19,7 +19,7 @@ class app{
 		$this->choice2 = $this->db->select(' id,nombre
 											FROM '.$this->grupo.' order by position ');
 		$this->choice3 = $this->db->select(' id,nombre
-											FROM '.$this->multimedia.' order by nombre ');
+											FROM '.$this->multimedia.' where exten=\'imagen\' order by nombre ');
 
 	}
 

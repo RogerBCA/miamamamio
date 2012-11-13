@@ -1,0 +1,30 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}Promociones {{ grupo.nombre }}{% endblock %}
+
+{% block grupo_content %}
+<section class="article-promo">
+    <h2 class="title-content3">Promociones</h2>             
+    <!-- news -->
+    <ol class="flow-news flow-all">
+        {% for p in promociones %}
+        <li class="list-news" id="p{{ p.id }}">
+            <figure class="img-shadow">
+                <a href="/media/{{ p.imagen }}" class="ancla-flow"><img src="/media/{{ p.imagen }}" alt="mia mami mio" width="72" height="78" /></a>
+            </figure>
+            <div class="text-news">
+                <h3 class="title-news3">{{ p.nombre }}</h3>
+                <p>{{ p.descrip|raw }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+    <!-- pager -->          
+<!--     <ol class="pager">
+        <li class="page-current"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+    </ol>     -->
+</section>
+{% endblock %}

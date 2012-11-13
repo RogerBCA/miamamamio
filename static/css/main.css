@@ -739,7 +739,7 @@ input.btn{ font-size:0; text-indent:-999em }
 .modal-footer:after { clear: both; }
 .modal-footer .btn + .btn { margin-bottom: 0; margin-left: 5px; }
 .modal-footer .btn-group .btn + .btn { margin-left: -1px; }
-#myModal{ width:370px; margin:-150px 0 0 -185px }
+#thanks,#loading,#error{ width:370px; margin:-150px 0 0 -185px }
 .bg-icon{ background:url('@{img}/ico-miamamamio.jpg') 260px 20px no-repeat; padding-right:105px; min-height:60px }
 .title-modal{ margin:0 0 5px; font-size:30px; color:#cfdb4f }
 .modal{
@@ -757,4 +757,15 @@ input.btn{ font-size:0; text-indent:-999em }
 		cursor:pointer;
 		&:hover{ opacity:0.80; filter:alpha(opacity=80) }
 	} 
+}
+
+/* Adicional */
+ul.errorlist li{
+	font-size: 11px !important;
+	line-height: 13px !important;
+	font-weight: bold !important;
+	color: #BF3030 !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	min-height: 25px !important;
 }

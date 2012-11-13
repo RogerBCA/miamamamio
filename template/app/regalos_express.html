@@ -23,10 +23,12 @@
                 {% for i, prod in productos %}
                 <li>
                     <figure class="figure-bg">
-                        <a href="#"><img src="/media/{{ prod.imagen }}" alt="mia mami mio" width="132" height="130" /></a>
+                        <a href="/producto/{{ prod.id }}/">
+                            <img src="/lib/timthumb.php?src=/media/{{ prod.imagen }}&h=130&w=132" alt="mia mami mio" width="132" height="130" />
+                        </a>
                         <figcaption class="spt"><span class="coin">S/.</span> {{ prod.precio }}</figcaption>
                     </figure>
-                    <h3 class="title-fig1"><a href="#">{{ cod.codigo }}</a></h3>
+                    <h3 class="title-fig1"><a href="/producto/{{ prod.id }}/">{{ cod.codigo }}</a></h3>
                     <h4 class="title-fig2">{{ cod.nombre }}</h4>
                 </li>
                 {% endfor %}

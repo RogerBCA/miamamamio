@@ -24,6 +24,18 @@ $(function(){
 			prev: '#prev'							
 		});
 	}	
+	//slider coleccion
+	var slideMain = $('#slider-inter');
+	if(slideMain.size()>0){
+		slideMain.cycle({ 
+			fx:     'scrollHorz',
+			speed:   500, 
+			timeout: 5000,
+			pause:   0,
+			next: '#links-col7', 
+			prev: '#links-col9'
+		});
+	}	
 	//efect load img
 	var items = $('.load-img');
 	if(items.size()>0){
@@ -65,10 +77,5 @@ $(function(){
 		  input.addClass('placeholder');
 		  input.val(input.attr('placeholder'));
 		}
-	  }).blur();	
-	  //modal
-	  var modal1 = $('#myModal');
-	  if(modal1){
-		  modal1.modal('show');
-	  }
+	  }).blur();
 });

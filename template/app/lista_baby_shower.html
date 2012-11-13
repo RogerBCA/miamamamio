@@ -1,6 +1,6 @@
 {% extends 'app/grupo.html' %}
 
-{% block title %}HOME{% endblock %}
+{% block title %}{{ sec.nombre }}{% endblock %}
 
 {% block sec_content %}
 <section id="content">
@@ -19,19 +19,8 @@
     </div>
     <article class="article-main">
         <div class="text-main">
-             <h2 class="title-inner color2">Lista baby shower</h2>
-
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor
-                vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel
-                purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat.
-                Suspendisse molestie, orci sed molestie congue, erat pede consectetuer
-                tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>
-            <p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio.
-                Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus
-                ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus.
-                Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum
-                ligula vel purus.</p>
+             <h2 class="title-inner color2">{{ sec.nombre }}</h2>
+             {{ sec.descrip|raw }}
         </div>
         <div class="img-aside">
             <ul class="aside-list">

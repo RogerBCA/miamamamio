@@ -1,44 +1,24 @@
 {% extends 'app/grupo.html' %}
 
-{% block title %}HOME{% endblock %}
+{% block title %}Consejos{% endblock %}
 
 {% block sec_content %}
 <section id="content">
     <h2 class="title-content">Consejos</h2>
     <ol class="flow">
+        {% for c in consejos %}
         <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
+            <a href="/consejos/{{ c.id }}/" class="ancla-flow">
+                <img src="/media/{{ c.imagen }}" alt="mia mami mio" width="186" height="96" />
+                <span></span>
+            </a>
+            <h3 class="title-flow">
+                <a href="/consejos/{{ c.id }}/">{{ c.nombre }}</a>
+            </h3>
         </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
-        <li class="list-flow">
-            <a href="#" class="ancla-flow"><img src="/static/images/baby0.jpg" alt="mia mami mio" /><span></span></a>
-            <h3 class="title-flow"><a href="#">Vivamus vitae metus id elit consecte vestibulum orci sed molestie</a></h3>
-        </li>
+        {% endfor %}
     </ol>
+    <!--
     <ol class="pager">
         <li class="page-current"><a href="#">1</a>
         </li>
@@ -49,5 +29,6 @@
         <li><a href="#">4</a>
         </li>
     </ol>
+    -->
 </section>
 {% endblock %}

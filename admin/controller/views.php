@@ -1,5 +1,13 @@
 <?php
 //Guiando a la app actual
+
+if( isset($_GET['app']) and $_GET['app'] == 'login' ){
+    if ( isset($_GET['type']) and $_GET['type'] == 'cerrar-session' ) {
+        session_destroy();
+        header( 'location: '.ADMIN_SITE );
+    }
+}
+
 if( $bl->actual($v[1],$v[2]) ){
 
     $locals['model'] = $bl->model;

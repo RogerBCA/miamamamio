@@ -12,7 +12,7 @@ class app{
 		$this->multimedia = PREFIX.'multimedia';
 		$this->db = new DB;
 		$this->choice1 = $this->db->select(' id,nombre
-											FROM '.$this->multimedia.' order by nombre ');
+											FROM '.$this->multimedia.' where exten=\'imagen\' order by nombre ');
 	}
 
 	public function listar(){

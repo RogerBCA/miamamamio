@@ -10,23 +10,23 @@ class app{
 	public $join;
 
 	function __construct(){
-		$this->join = 'coleccion';
-		$this->tabla = PREFIX.$this->join.'banner';
+		$this->tabla = PREFIX.'coleccionbanner';
+		$this->coleccion = PREFIX.'coleccionenlace';
 		$this->multimedia = PREFIX.'multimedia';
 		$this->db = new DB;
 		$this->choice1 = $this->db->select(' id,nombre
-											FROM '.$this->multimedia.' order by nombre ');
+											FROM '.$this->multimedia.' where exten=\'imagen\' order by nombre ');
 		$this->choice2 = $this->db->select(' id,nombre
-											FROM '.PREFIX.$this->join.' order by nombre ');
+											FROM '.$this->coleccion.' order by nombre ');
 	}
 
 	public function listar(){
-		$this->datos = $this->db->select(' a.id as id, b.nombre as imagen
+		$this->datos = $this->db->select(' a.id as id, b.nombre as imagen,c.nombre as coleccion
 											FROM '.$this->tabla.' AS a
 											LEFT OUTER JOIN '.$this->multimedia.' AS b 
 											ON a.image_id = b.id 
-											LEFT OUTER JOIN '.PREFIX.$this->join.' AS c 
-											ON a.'.$this->join.'_id = c.id ');
+											LEFT OUTER JOIN '.$this->coleccion.' AS c 
+											ON a.coleccion_id = c.id ');
 		$this->total = count($this->datos);
 		return $this->datos;
 	}
@@ -52,9 +52,7 @@ class app{
 			$errors['position'] = true;
 			$app['position']	= '1';
 		}
-		if ($app['image'] == '') {
-			$errors['image'] = true;
-		}
+		if ($app['image'] == '') $errors['image'] = true;
 
 		//a variables
 		$this->datos = $app;
@@ -65,10 +63,10 @@ class app{
 			$query['enlace'] 	= $app['enlace'];
 			$query['position'] 	= $app['position'];
 			$query['image_id']	= $app['image'];
-			if ($app[$this->join] == '') {
-				$query[$this->join.'_id'] 	= 'null';
+			if ($app['coleccion'] == '') {
+				$query['coleccion_id'] 	= 'null';
 			}else{
-				$query[$this->join.'_id'] 	= $app[$this->join];
+				$query['coleccion_id'] 	= $app['coleccion'];
 			}
 
 			$this->db->insert($this->tabla,$query);
@@ -85,10 +83,8 @@ class app{
 			$errors['position'] = true;
 			$app['position']	= '1';
 		}
-		if ($app['image'] == '') {
-			$errors['image'] = true;
-		}
-
+		if ($app['image'] == '') $errors['image'] = true; else $app['image_id'] = $app['image'];
+		if ($app['coleccion'] != '') $app['coleccion_id'] = $app['coleccion'];
 		//a variables
 		$this->datos = $app;
 		$this->errors = $errors;
@@ -97,10 +93,10 @@ class app{
 			$query['enlace'] 	= $app['enlace'];
 			$query['position'] 	= $app['position'];
 			$query['image_id']	= $app['image'];
-			if ($app[$this->join] == '') {
-				$query[$this->join.'_id'] 	= 'null';
+			if ($app['coleccion'] == '') {
+				$query['coleccion_id'] 	= 'null';
 			}else{
-				$query[$this->join.'_id'] 	= $app[$this->join];
+				$query['coleccion_id'] 	= $app['coleccion'];
 			}
 
 			$this->db->update($this->tabla,$query,' id = '.$id);

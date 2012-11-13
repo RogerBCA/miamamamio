@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-09-2012 a las 17:14:21
+-- Tiempo de generación: 04-10-2012 a las 13:13:01
 -- Versión del servidor: 5.5.24
 -- Versión de PHP: 5.3.10-1ubuntu3.4
 
@@ -92,7 +92,15 @@ CREATE TABLE IF NOT EXISTS `app_coleccionbanner` (
   PRIMARY KEY (`id`),
   KEY `app_coleccionbanner_55250c4` (`coleccion_id`),
   KEY `app_coleccionbanner_6682136` (`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `app_coleccionbanner`
+--
+
+INSERT INTO `app_coleccionbanner` (`id`, `coleccion_id`, `image_id`, `enlace`, `position`) VALUES
+(1, 2, 1, '/contacto/', 1),
+(2, 2, 8, '', 1);
 
 -- --------------------------------------------------------
 
@@ -107,15 +115,25 @@ CREATE TABLE IF NOT EXISTS `app_coleccionenlace` (
   `modified` datetime NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
-  `coleccion_id` int(11) NOT NULL,
+  `grupo_id` int(11) NOT NULL,
   `nombre` varchar(120) NOT NULL,
   `enlace` varchar(120) NOT NULL,
+  `icono_id` int(11) NOT NULL,
   `position` int(11) NOT NULL,
   `slug` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `app_coleccionenlace_55250c4` (`coleccion_id`),
+  KEY `app_coleccionenlace_15fb1ffa` (`grupo_id`),
+  KEY `app_coleccionenlace_4c2bd50d` (`icono_id`),
   KEY `app_coleccionenlace_56ae2a2a` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `app_coleccionenlace`
+--
+
+INSERT INTO `app_coleccionenlace` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `grupo_id`, `nombre`, `enlace`, `icono_id`, `position`, `slug`) VALUES
+(1, 1, '2012-10-04 10:09:33', '2012-10-04 12:51:18', 0, 0, 1, 'bebas', '', 9, 2, 'bebas'),
+(2, 1, '2012-10-04 12:39:03', '2012-10-04 12:40:02', 0, 0, 1, 'bebos', '', 8, 1, 'bebos');
 
 -- --------------------------------------------------------
 
@@ -138,6 +156,31 @@ CREATE TABLE IF NOT EXISTS `app_consejo` (
   PRIMARY KEY (`id`),
   KEY `app_consejo_6682136` (`image_id`),
   KEY `app_consejo_56ae2a2a` (`slug`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `app_consejo`
+--
+
+INSERT INTO `app_consejo` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `nombre`, `descrip`, `image_id`, `position`, `slug`) VALUES
+(1, 1, '2012-10-01 00:18:41', '2012-10-01 05:53:32', 0, 0, 'Agencia', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero. Donec gravida euismod elit.</p>\r\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero. Donec gravida euismod elit.</p>\r\n<p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>', 5, 1, 'agencia');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `app_contacto`
+--
+
+CREATE TABLE IF NOT EXISTS `app_contacto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(1) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -227,7 +270,14 @@ CREATE TABLE IF NOT EXISTS `app_infosite` (
   `ga` varchar(12) NOT NULL,
   `coordenadas` varchar(48) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `app_infosite`
+--
+
+INSERT INTO `app_infosite` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `email`, `telefono`, `direccion`, `site`, `facebook`, `twitter`, `pinterest`, `titulo`, `description`, `ga`, `coordenadas`) VALUES
+(1, 1, '2012-10-02 10:30:31', '2012-10-02 10:30:31', 0, 0, 'roger@staffcreativa.com', '555-5555', 'Av. Sin Nombre #123', '', 'http://facebook.com/', 'http://twitter.com/', 'http://pinterest.com/', 'mia mama mio', 'mia mama mio', '', '');
 
 -- --------------------------------------------------------
 
@@ -244,19 +294,24 @@ CREATE TABLE IF NOT EXISTS `app_multimedia` (
   `modified_by` int(11) DEFAULT NULL,
   `nombre` varchar(120) NOT NULL,
   `imagen` varchar(100) NOT NULL,
+  `exten` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `app_multimedia`
 --
 
-INSERT INTO `app_multimedia` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `nombre`, `imagen`) VALUES
-(1, 1, '2012-09-27 12:49:45', '2012-09-27 12:49:45', 0, 0, 'Home - Slide 1', 'multimedia/home1.jpg'),
-(2, 1, '2012-09-27 13:04:42', '2012-09-27 13:04:42', 0, 0, 'Interno - slider - bebe', 'multimedia/slide1.jpg'),
-(3, 1, '2012-09-27 13:06:01', '2012-09-27 13:06:01', 0, 0, 'Interno - Lateral', 'multimedia/img-bbs.jpg'),
-(4, 1, '2012-09-27 14:51:05', '2012-09-27 14:51:05', 0, 0, 'tendencia', 'multimedia/img-tendencia-bg.jpg'),
-(5, 1, '2012-09-27 14:51:26', '2012-09-27 14:51:26', 0, 0, 'coleccion', 'multimedia/img-seccion.jpg');
+INSERT INTO `app_multimedia` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `nombre`, `imagen`, `exten`) VALUES
+(1, 1, '2012-09-27 12:49:45', '2012-10-03 17:58:27', 0, 0, 'Home - Slide 1', 'multimedia/home1.jpg', 'imagen'),
+(2, 1, '2012-09-27 13:04:42', '2012-10-03 17:58:39', 0, 0, 'Interno - slider - bebe', 'multimedia/slide1.jpg', 'imagen'),
+(3, 1, '2012-09-27 13:06:01', '2012-10-03 17:58:37', 0, 0, 'Interno - Lateral', 'multimedia/img-bbs.jpg', 'imagen'),
+(4, 1, '2012-09-27 14:51:05', '2012-10-03 17:58:42', 0, 0, 'tendencia', 'multimedia/img-tendencia-bg.jpg', 'imagen'),
+(5, 1, '2012-09-27 14:51:26', '2012-10-03 17:57:48', 0, 0, 'coleccion', 'multimedia/img-seccion.jpg', 'imagen'),
+(6, 1, '2012-10-03 15:06:01', '2012-10-03 17:58:00', 0, 0, 'DOCUMENTO PDF', 'multimedia/prueba.pdf', 'documento'),
+(7, 1, '2012-10-04 10:32:28', '2012-10-04 10:34:01', 0, 0, 'icono bebos', 'multimedia/links-coleccion-bebos.png', 'imagen'),
+(8, 1, '2012-10-04 12:39:30', '2012-10-04 12:39:30', 0, 0, 'icono coleccion bebos', 'multimedia/coleccion-bebos.png', 'imagen'),
+(9, 1, '2012-10-04 12:39:44', '2012-10-04 12:39:44', 0, 0, 'icono coleccion bebas', 'multimedia/coleccion-bebas.png', 'imagen');
 
 -- --------------------------------------------------------
 
@@ -279,7 +334,14 @@ CREATE TABLE IF NOT EXISTS `app_noticia` (
   PRIMARY KEY (`id`),
   KEY `app_noticia_6682136` (`image_id`),
   KEY `app_noticia_56ae2a2a` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `app_noticia`
+--
+
+INSERT INTO `app_noticia` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `nombre`, `descrip`, `image_id`, `position`, `slug`) VALUES
+(1, 1, '2012-10-01 04:12:09', '2012-10-01 06:07:01', 0, 0, '"Agencia"', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero. Donec gravida euismod elit.</p>\r\n<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero. Donec gravida euismod elit.</p>\r\n<p>Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>', 3, 1, 'agencia');
 
 -- --------------------------------------------------------
 
@@ -296,10 +358,19 @@ CREATE TABLE IF NOT EXISTS `app_prensa` (
   `modified_by` int(11) DEFAULT NULL,
   `nombre` varchar(120) NOT NULL,
   `image_id` int(11) NOT NULL,
+  `pdf_id` int(11) NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `app_prensa_6682136` (`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `app_prensa_6682136` (`image_id`),
+  KEY `app_prensa_4c3a58e9` (`pdf_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `app_prensa`
+--
+
+INSERT INTO `app_prensa` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `nombre`, `image_id`, `pdf_id`, `position`) VALUES
+(1, 1, '2012-10-03 15:07:41', '2012-10-03 15:07:41', 0, 0, 'hola mundo', 1, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `app_productos` (
 --
 
 INSERT INTO `app_productos` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `categoria_id`, `grupo_id`, `nombre`, `codigo`, `precio`, `descrip`, `image_id`, `slug`, `position`) VALUES
-(1, 1, '2012-09-27 16:47:15', '2012-09-27 17:03:48', 0, 0, 1, 1, 'bebédfsfds', 'CWLI1201', 12.25, '', 1, 'hola-mundo', 1);
+(1, 1, '2012-09-27 16:47:15', '2012-10-01 03:17:44', 0, 0, 1, 1, 'bebédfsfds', 'CWLI1201', 12.25, '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero. Donec gravida euismod elit. Sed rhoncus. Vivamus nibh magna, scelerisque id, tempus in, auctor non, ipsum. Vivamus vitae metus id elit consectetuer vestibulum.</p>\r\n<p>Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, 'hola-mundo', 1);
 
 -- --------------------------------------------------------
 
@@ -358,7 +429,39 @@ CREATE TABLE IF NOT EXISTS `app_promocion` (
   PRIMARY KEY (`id`),
   KEY `app_promocion_15fb1ffa` (`grupo_id`),
   KEY `app_promocion_6682136` (`image_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `app_promocion`
+--
+
+INSERT INTO `app_promocion` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `grupo_id`, `nombre`, `descrip`, `image_id`, `position`) VALUES
+(1, 1, '2012-10-03 02:00:24', '2012-10-03 02:00:24', 0, 0, 1, 'Agencia', '<p>fffffffffffff uuuuuuu</p>', 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `app_promocionbanner`
+--
+
+CREATE TABLE IF NOT EXISTS `app_promocionbanner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `grupo_id` int(11) DEFAULT NULL,
+  `image_id` int(11) NOT NULL,
+  `enlace` varchar(120) NOT NULL,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `app_promocionbanner_15fb1ffa` (`grupo_id`),
+  KEY `app_promocionbanner_6682136` (`image_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `app_promocionbanner`
+--
+
+INSERT INTO `app_promocionbanner` (`id`, `grupo_id`, `image_id`, `enlace`, `position`) VALUES
+(1, 1, 5, '', 1),
+(2, 1, 2, '', 1);
 
 -- --------------------------------------------------------
 
@@ -384,20 +487,21 @@ CREATE TABLE IF NOT EXISTS `app_seccion` (
   PRIMARY KEY (`id`),
   KEY `app_seccion_7c8501cd` (`padre_id`),
   KEY `app_seccion_56ae2a2a` (`slug`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `app_seccion`
 --
 
 INSERT INTO `app_seccion` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `nombre`, `subtitulo`, `nick`, `enlace`, `descrip`, `position`, `padre_id`, `slug`) VALUES
-(1, 1, '2012-09-27 12:50:27', '2012-09-27 12:52:46', 0, 0, 'Home', '', 'home', '', '', 1, NULL, 'home'),
-(2, 1, '2012-09-27 13:09:23', '2012-09-27 13:09:23', 0, 0, 'Lista baby shower', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, NULL, 'lista-baby-shower'),
-(3, 1, '2012-09-27 13:10:06', '2012-09-27 13:10:06', 0, 0, 'nosotros', '', '', '', '', 1, NULL, 'nosotros'),
+(1, 1, '2012-09-27 12:50:27', '2012-10-03 13:50:54', 0, 0, 'Home', '', 'home', '', '', 1, NULL, 'home'),
+(2, 1, '2012-09-27 13:09:23', '2012-10-01 01:02:57', 0, 0, 'Lista baby shower', '', 'lista-baby-shower', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, NULL, 'lista-baby-shower'),
+(3, 1, '2012-09-27 13:10:06', '2012-09-30 23:15:17', 0, 0, 'nosotros', '', 'nosotros', '', '', 1, NULL, 'nosotros'),
 (4, 1, '2012-09-27 13:10:54', '2012-09-27 13:10:54', 0, 0, 'La historia', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, 3, 'la-historia'),
 (5, 1, '2012-09-27 13:11:20', '2012-09-27 13:11:20', 0, 0, 'misión', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, 3, 'mision'),
 (6, 1, '2012-09-27 13:11:40', '2012-09-27 13:11:40', 0, 0, 'visión', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, 3, 'vision'),
-(7, 1, '2012-09-27 13:11:55', '2012-09-27 13:11:55', 0, 0, 'valores', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, 3, 'valores');
+(7, 1, '2012-09-27 13:11:55', '2012-09-27 13:11:55', 0, 0, 'valores', '', '', '', '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus. Vivamus eget purus. Quisque nulla. Proin nonummy elit nec erat. Suspendisse molestie, orci sed molestie congue, erat pede consectetuer tellus, non ultricies turpis purus eget lorem. Fusce ut libero.</p>\r\n<p>Etiam augue. Ut velit urna, porta a, commodo vitae, blandit vitae, odio. Ut mi arcu, placerat eu, imperdiet non, molestie quis, elit. Phasellus ligula ipsum, venenatis sit amet, feugiat eget, blandit aliquam, risus. Donec mollis.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi eu tortor vel neque congue congue. Mauris quis erat. Vestibulum dictum ligula vel purus.</p>', 1, 3, 'valores'),
+(8, 1, '2012-09-29 19:19:28', '2012-09-29 19:19:28', 0, 0, 'Home - Slide', '', 'home_slide', '', 'Contiene a las imágenes del slide del\n         home', 0, NULL, 'home-slide');
 
 -- --------------------------------------------------------
 
@@ -414,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `app_seccionbanner` (
   PRIMARY KEY (`id`),
   KEY `app_seccionbanner_3a4655fd` (`seccion_id`),
   KEY `app_seccionbanner_6682136` (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `app_seccionbanner`
@@ -422,7 +526,9 @@ CREATE TABLE IF NOT EXISTS `app_seccionbanner` (
 
 INSERT INTO `app_seccionbanner` (`id`, `seccion_id`, `image_id`, `enlace`, `position`) VALUES
 (1, 1, 1, '', 1),
-(2, 1, 1, '', 1);
+(2, 1, 1, '', 1),
+(3, 3, 2, '', 1),
+(4, 3, 3, '', 1);
 
 -- --------------------------------------------------------
 
@@ -464,17 +570,28 @@ CREATE TABLE IF NOT EXISTS `app_tendenciaenlace` (
   `modified` datetime NOT NULL,
   `created_by` int(11) DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
-  `tendencia_id` int(11) NOT NULL,
+  `grupo_id` int(11) NOT NULL,
   `nombre` varchar(120) NOT NULL,
   `image_id` int(11) NOT NULL,
+  `icono_id` int(11) NOT NULL,
   `enlace` varchar(120) NOT NULL,
   `position` int(11) NOT NULL,
   `slug` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `app_tendenciaenlace_a9d3922` (`tendencia_id`),
+  KEY `app_tendenciaenlace_15fb1ffa` (`grupo_id`),
   KEY `app_tendenciaenlace_6682136` (`image_id`),
+  KEY `app_tendenciaenlace_4c2bd50d` (`icono_id`),
   KEY `app_tendenciaenlace_56ae2a2a` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `app_tendenciaenlace`
+--
+
+INSERT INTO `app_tendenciaenlace` (`id`, `active`, `created`, `modified`, `created_by`, `modified_by`, `grupo_id`, `nombre`, `image_id`, `icono_id`, `enlace`, `position`, `slug`) VALUES
+(1, 1, '2012-10-04 10:51:15', '2012-10-04 10:51:15', 0, 0, 1, 'bebas', 1, 7, '', 1, 'bebas'),
+(2, 1, '2012-10-04 11:30:01', '2012-10-04 11:30:09', 0, 0, 1, 'bebos', 1, 7, '/contacto/', 1, 'bebas'),
+(3, 1, '2012-10-04 11:39:52', '2012-10-04 11:39:52', 0, 0, 1, 'Nombre', 1, 7, '', 1, 'nombre');
 
 -- --------------------------------------------------------
 
@@ -552,7 +669,7 @@ CREATE TABLE IF NOT EXISTS `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=82 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
 
 --
 -- Volcado de datos para la tabla `auth_permission`
@@ -633,7 +750,13 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (78, 'Can delete Consejo', 20, 'delete_consejo'),
 (79, 'Can add Prensa', 28, 'add_prensa'),
 (80, 'Can change Prensa', 28, 'change_prensa'),
-(81, 'Can delete Prensa', 28, 'delete_prensa');
+(81, 'Can delete Prensa', 28, 'delete_prensa'),
+(82, 'Can add Banner de Promocion', 29, 'add_promocionbanner'),
+(83, 'Can change Banner de Promocion', 29, 'change_promocionbanner'),
+(84, 'Can delete Banner de Promocion', 29, 'delete_promocionbanner'),
+(85, 'Can add Contacto', 30, 'add_contacto'),
+(86, 'Can change Contacto', 30, 'change_contacto'),
+(87, 'Can delete Contacto', 30, 'delete_contacto');
 
 -- --------------------------------------------------------
 
@@ -662,7 +785,7 @@ CREATE TABLE IF NOT EXISTS `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `is_staff`, `is_active`, `is_superuser`, `last_login`, `date_joined`) VALUES
-(1, 'admin', '', '', 'rbaltazarc@gmail.com', 'pbkdf2_sha256$10000$nFtmvHsqxyHC$bqUopS4fdoGTJqptEc2FS8OqRx8G1T7gRw654QjlqVk=', 1, 1, 1, '2012-09-26 12:44:47', '2012-09-19 17:23:30');
+(1, 'admin', '', '', 'rbaltazarc@gmail.com', 'pbkdf2_sha256$10000$nFtmvHsqxyHC$bqUopS4fdoGTJqptEc2FS8OqRx8G1T7gRw654QjlqVk=', 1, 1, 1, '2012-10-02 15:26:03', '2012-09-19 17:23:30');
 
 -- --------------------------------------------------------
 
@@ -714,7 +837,7 @@ CREATE TABLE IF NOT EXISTS `django_admin_log` (
   PRIMARY KEY (`id`),
   KEY `django_admin_log_403f60f` (`user_id`),
   KEY `django_admin_log_1bb8f392` (`content_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Volcado de datos para la tabla `django_admin_log`
@@ -736,7 +859,13 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `user_id`, `content_type_id
 (13, '2012-09-19 17:57:36', 1, 9, '1', 'HOME', 1, ''),
 (26, '2012-09-20 16:51:22', 1, 8, '1', ' slider 1 -> multimedia/slide1.jpg', 1, ''),
 (29, '2012-09-20 16:55:33', 1, 8, '2', ' lateral bebe -> multimedia/img-bbs.jpg', 1, ''),
-(36, '2012-09-26 17:03:39', 1, 8, '3', ' bebé -> multimedia/Wallpapers-HD-fondos-de-pantalla-espacio_2.jpg', 1, '');
+(36, '2012-09-26 17:03:39', 1, 8, '3', ' bebé -> multimedia/Wallpapers-HD-fondos-de-pantalla-espacio_2.jpg', 1, ''),
+(37, '2012-09-30 00:30:13', 1, 28, '2', 'Agencia', 1, ''),
+(38, '2012-10-02 10:30:31', 1, 11, '1', 'Información del Sitio', 1, ''),
+(39, '2012-10-03 11:47:38', 1, 23, '1', 'bebé', 1, ''),
+(40, '2012-10-03 12:00:10', 1, 23, '1', 'hola mundo', 1, ''),
+(41, '2012-10-03 12:28:34', 1, 24, '1', 'hola mundo', 1, ''),
+(42, '2012-10-03 12:36:41', 1, 25, '1', 'hola mundo', 1, '');
 
 -- --------------------------------------------------------
 
@@ -751,7 +880,7 @@ CREATE TABLE IF NOT EXISTS `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Volcado de datos para la tabla `django_content_type`
@@ -782,7 +911,9 @@ INSERT INTO `django_content_type` (`id`, `name`, `app_label`, `model`) VALUES
 (25, 'Banner de coleccion', 'app', 'coleccionbanner'),
 (26, 'Promocion', 'app', 'promocion'),
 (27, 'Noticia', 'app', 'noticia'),
-(28, 'Prensa', 'app', 'prensa');
+(28, 'Prensa', 'app', 'prensa'),
+(29, 'Banner de Promocion', 'app', 'promocionbanner'),
+(30, 'Contacto', 'app', 'contacto');
 
 -- --------------------------------------------------------
 
@@ -803,12 +934,14 @@ CREATE TABLE IF NOT EXISTS `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('1095d3c43b81c608b3f0d238c15aba07', 'YjBlNWE4NWI4OWU1NTMyOTEwMjg3MDZjMWM3M2VkN2ZkYzk5N2FiMjqAAn1xAVUKdGVzdGNvb2tp\nZVUGd29ya2VkcQJzLg==\n', '2012-10-16 15:09:03'),
 ('1d16b3dd4e2491d8dd998639da5e2602', 'NzQ4OWVkZjA1YmNkZWFlNjlmNzE4ZWQ3YzgwOWIzMjUzOTY0NjQ3ODqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-03 17:26:31'),
-('232f9cec8dcc090ac07f87131852fce8', 'MzVkNGFlMmY2Y2Y5NzE1MDIxMjM3Y2FiYTk1YTdkZjQyZTM5NDBhZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-10 12:44:47'),
 ('427f432e3bb9f79a9fe80dc82d61c113', 'MzVkNGFlMmY2Y2Y5NzE1MDIxMjM3Y2FiYTk1YTdkZjQyZTM5NDBhZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-04 15:45:06'),
 ('5d97c96a44356b46b3441524a9b6a549', 'ODg3N2Y3YzdkZDEzNzIzOWJiZDc5YWRjOTVkMDA4NzI5NGI3YjI0NjqAAn1xAVUKdGVzdGNvb2tp\nZVUGd29ya2VkcQJzLg==\n', '2012-10-10 11:07:48'),
+('68db6033c9ba7943409f4f4ce7d80847', 'MzVkNGFlMmY2Y2Y5NzE1MDIxMjM3Y2FiYTk1YTdkZjQyZTM5NDBhZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-16 15:26:03'),
 ('74db898db3f87a19a83d69b657ffbbdc', 'MzVkNGFlMmY2Y2Y5NzE1MDIxMjM3Y2FiYTk1YTdkZjQyZTM5NDBhZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-05 14:36:56'),
-('c0c75bccb3abf43e596d7d2e75aca88d', 'MzVkNGFlMmY2Y2Y5NzE1MDIxMjM3Y2FiYTk1YTdkZjQyZTM5NDBhZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-05 13:10:13');
+('c0c75bccb3abf43e596d7d2e75aca88d', 'MzVkNGFlMmY2Y2Y5NzE1MDIxMjM3Y2FiYTk1YTdkZjQyZTM5NDBhZTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg==\n', '2012-10-05 13:10:13'),
+('ffb4a4f89eccaaf4ad38d8d595f0a2c9', 'ODFmMDM4OGUxN2ZjZjQyMzM2NjhlYTJlYTk4ZDhlMTZmYzdhZGM1OTqAAn1xAVUKdGVzdGNvb2tp\nZXECVQZ3b3JrZWRxA3Mu\n', '2012-10-18 10:17:39');
 
 -- --------------------------------------------------------
 
@@ -822,31 +955,33 @@ CREATE TABLE IF NOT EXISTS `pb_content_type` (
   `name_plural` varchar(120) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL,
+  `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Volcado de datos para la tabla `pb_content_type`
 --
 
-INSERT INTO `pb_content_type` (`id`, `name`, `name_plural`, `app_label`, `model`) VALUES
-(1, 'Multimedia', 'Galería Multimedia', 'Contenido', 'multimedia'),
-(2, 'Sección', 'Secciones', 'Contenido', 'seccion'),
-(3, 'Grupo', 'Grupos', 'Contenido', 'grupo'),
-(4, 'Categoría', 'Categorías', 'Contenido', 'categoria'),
-(5, 'Producto', 'Productos', 'Contenido', 'productos'),
-(6, 'Tendencia', 'Tendencias', 'Contenido', 'tendencia'),
-(7, 'Banner Grupo', 'Banners Grupo', 'Banner', 'grupobanner'),
-(8, 'Banner Coleccion', 'Banners Coleccion', 'Banner', 'coleccionbanner'),
-(9, 'Banner Seccion', 'Banners Seccion', 'Banner', 'seccionbanner'),
-(10, 'Enlace Coleccion', 'Enlaces Coleccion', 'Enlaces', 'coleccionenlace'),
-(11, 'Enlace Tendencia', 'Enlaces Tendencia', 'Enlaces', 'tendenciaenlace'),
-(12, 'Noticia', 'Noticias', 'Contenido', 'noticia'),
-(13, 'Consejo', 'Consejos', 'Contenido', 'consejo'),
-(14, 'Colección', 'Colecciones', 'Contenido', 'coleccion'),
-(15, 'Prensa', 'Prensas', 'Contenido', 'prensa'),
-(16, 'Promoción', 'Promociones', 'Contenido', 'promocion');
+INSERT INTO `pb_content_type` (`id`, `name`, `name_plural`, `app_label`, `model`, `active`) VALUES
+(1, 'Multimedia', 'Galería Multimedia', 'Contenido', 'multimedia', 1),
+(2, 'Sección', 'Secciones', 'Contenido', 'seccion', 1),
+(3, 'Grupo', 'Grupos', 'Contenido', 'grupo', 1),
+(4, 'Categoría', 'Categorías', 'Contenido', 'categoria', 1),
+(5, 'Producto', 'Productos', 'Contenido', 'productos', 1),
+(6, 'Tendencia', 'Tendencias', 'Contenido', 'tendencia', 1),
+(7, 'Banner Grupo', 'Banners Grupo', 'Banner', 'grupobanner', 1),
+(8, 'Banner Coleccion', 'Banners Coleccion', 'Banner', 'coleccionbanner', 1),
+(9, 'Banner Seccion', 'Banners Seccion', 'Banner', 'seccionbanner', 1),
+(10, 'Enlace Coleccion', 'Enlaces Coleccion', 'Enlaces', 'coleccionenlace', 1),
+(11, 'Enlace Tendencia', 'Enlaces Tendencia', 'Enlaces', 'tendenciaenlace', 1),
+(12, 'Noticia', 'Noticias', 'Contenido', 'noticia', 1),
+(13, 'Consejo', 'Consejos', 'Contenido', 'consejo', 1),
+(14, 'Colección', 'Colecciones', 'Contenido', 'coleccion', 1),
+(15, 'Prensa', 'Prensas', 'Contenido', 'prensa', 1),
+(16, 'Promoción', 'Promociones', 'Contenido', 'promocion', 1),
+(17, 'Banner Promoción', 'Banners Promoción', 'Banner', 'promocionbanner', 1);
 
 -- --------------------------------------------------------
 
@@ -928,8 +1063,8 @@ CREATE TABLE IF NOT EXISTS `south_migrationhistory` (
 -- Filtros para la tabla `app_coleccion`
 --
 ALTER TABLE `app_coleccion`
-  ADD CONSTRAINT `image_id_refs_id_140b83d6` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`),
-  ADD CONSTRAINT `grupo_id_refs_id_2b534db1` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`);
+  ADD CONSTRAINT `grupo_id_refs_id_2b534db1` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`),
+  ADD CONSTRAINT `image_id_refs_id_140b83d6` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`);
 
 --
 -- Filtros para la tabla `app_coleccionbanner`
@@ -942,7 +1077,8 @@ ALTER TABLE `app_coleccionbanner`
 -- Filtros para la tabla `app_coleccionenlace`
 --
 ALTER TABLE `app_coleccionenlace`
-  ADD CONSTRAINT `coleccion_id_refs_id_7dbfe681` FOREIGN KEY (`coleccion_id`) REFERENCES `app_coleccion` (`id`);
+  ADD CONSTRAINT `grupo_id_refs_id_1dbd869b` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`),
+  ADD CONSTRAINT `icono_id_refs_id_77e0690` FOREIGN KEY (`icono_id`) REFERENCES `app_multimedia` (`id`);
 
 --
 -- Filtros para la tabla `app_consejo`
@@ -973,6 +1109,7 @@ ALTER TABLE `app_noticia`
 -- Filtros para la tabla `app_prensa`
 --
 ALTER TABLE `app_prensa`
+  ADD CONSTRAINT `pdf_id_refs_id_1fe71949` FOREIGN KEY (`pdf_id`) REFERENCES `app_multimedia` (`id`),
   ADD CONSTRAINT `image_id_refs_id_1fe71949` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`);
 
 --
@@ -991,6 +1128,13 @@ ALTER TABLE `app_promocion`
   ADD CONSTRAINT `image_id_refs_id_2bfe01e7` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`);
 
 --
+-- Filtros para la tabla `app_promocionbanner`
+--
+ALTER TABLE `app_promocionbanner`
+  ADD CONSTRAINT `grupo_id_refs_id_54161d52` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`),
+  ADD CONSTRAINT `image_id_refs_id_68127` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`);
+
+--
 -- Filtros para la tabla `app_seccion`
 --
 ALTER TABLE `app_seccion`
@@ -1007,15 +1151,16 @@ ALTER TABLE `app_seccionbanner`
 -- Filtros para la tabla `app_tendencia`
 --
 ALTER TABLE `app_tendencia`
-  ADD CONSTRAINT `image_id_refs_id_27be280c` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`),
-  ADD CONSTRAINT `grupo_id_refs_id_3dea25e1` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`);
+  ADD CONSTRAINT `grupo_id_refs_id_3dea25e1` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`),
+  ADD CONSTRAINT `image_id_refs_id_27be280c` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`);
 
 --
 -- Filtros para la tabla `app_tendenciaenlace`
 --
 ALTER TABLE `app_tendenciaenlace`
-  ADD CONSTRAINT `image_id_refs_id_295a08ea` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`),
-  ADD CONSTRAINT `tendencia_id_refs_id_421263d3` FOREIGN KEY (`tendencia_id`) REFERENCES `app_tendencia` (`id`);
+  ADD CONSTRAINT `grupo_id_refs_id_52694c4b` FOREIGN KEY (`grupo_id`) REFERENCES `app_grupo` (`id`),
+  ADD CONSTRAINT `icono_id_refs_id_295a08ea` FOREIGN KEY (`icono_id`) REFERENCES `app_multimedia` (`id`),
+  ADD CONSTRAINT `image_id_refs_id_295a08ea` FOREIGN KEY (`image_id`) REFERENCES `app_multimedia` (`id`);
 
 --
 -- Filtros para la tabla `app_userprofile`

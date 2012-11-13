@@ -15,7 +15,7 @@ class app{
 		$this->multimedia = PREFIX.'multimedia';
 		$this->db = new DB;
 		$this->choice1 = $this->db->select(' id,nombre
-											FROM '.$this->multimedia.' order by nombre ');
+											FROM '.$this->multimedia.' where exten=\'imagen\' order by nombre ');
 		$this->choice2 = $this->db->select(' id,nombre
 											FROM '.$this->grupo.' order by nombre ');
 	}
@@ -68,8 +68,10 @@ class app{
 			$query['created_by'] 	= $SESSION['iduser'];
 			$query['modified_by'] 	= $SESSION['iduser'];
 
+			$query['video'] 	= $app['video'];
 			$query['image_id']	= $app['image'];
 			$query['grupo_id'] 	= $app['grupo'];
+
 
 			$this->db->insert($this->tabla,$query);
 			$this->devolverID = $this->db->devolverID;
@@ -99,6 +101,7 @@ class app{
 			$query['modified'] 		= date('Y-m-d H:i:s');
 			$query['modified_by'] 	= $SESSION['iduser'];
 
+			$query['video'] 	= $app['video'];
 			$query['image_id']	= $app['image'];
 			$query['grupo_id'] 	= $app['grupo'];
 

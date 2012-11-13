@@ -1,18 +1,26 @@
 {% extends 'app/grupo.html' %}
 
-{% block title %}Coleccion {{ grupo.nombre }}{% endblock %}
+{% block title %}Promociones {{ grupo.nombre }}{% endblock %}
 
 {% block grupo_content %}
 <!-- slider -->
+{% if slide %}
 <div id="prev" class="spt"></div>
 <div id="next" class="spt"></div>
 <div id="out-slider-main">
     <section id="slider-main">
-        <div class="slider-main"><a href="#"><img src="/static/images/slide1-promo.jpg" alt="mia mama mamio" /></a></div>   
-        <div class="slider-main"><a href="#"><img src="/static/images/slide1-promo.jpg" alt="mia mama mamio" /></a></div>
-        <div class="slider-main"><a href="#"><img src="/static/images/slide1-promo.jpg" alt="mia mama mamio" /></a></div>
+        {% for img in slide %}
+        <div class="slider-main">
+        {% if img.enlace %}
+        <a href="{{img.enlace}}"><img src="/media/{{ img.imagen }}" alt="mia mama mamio" /></a>
+        {% else %}
+        <img src="/media/{{ img.imagen }}" alt="mia mama mamio" />
+        {% endif %}
+        </div>
+        {% endfor %}
     </section>
 </div>
+{% endif %}
 <section class="article-promo">
 	<h2 class="title-main color3">Promociones</h2>         	
     <!-- slider -->
@@ -20,23 +28,13 @@
     	<div id="prev3" class="buttons prev spt"></div>
     	<div class="viewport">
             <ol class="overview">
-                <!-- 1 -->
-                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 2 -->                    
-                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 3 -->                    
-                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 4 -->                    
-                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 5 -->
-                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 6 -->                    
-                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 7 -->                    
-                <li><figure><a href="#"><img src="/static/images/promo1.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- 8 -->                    
-                <li><figure><a href="#"><img src="/static/images/promo2.jpg" alt="mia mama mio" /></a></figure></li>
-                <!-- end -->
+                {% for p in promociones %}
+                <li>
+                    <figure>
+                        <a href="list/#p{{ p.id }}"><img src="/lib/timthumb.php?src=/media/{{ p.imagen }}&h=227&w=170" alt="{{ p.nombre }}" title="{{ p.nombre }}" width="170" height="227"/></a>
+                    </figure>
+                </li>
+                {% endfor %}
             </ol>
         </div>
         <div id="next3" class="buttons next spt"></div>

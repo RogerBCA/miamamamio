@@ -1,0 +1,27 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}Noticias{% endblock %}
+
+{% block sec_content %}
+<section id="content">
+    <h2 class="title-content2">Noticias</h2>
+    <article class="article-all">
+        <aside class="aside-content">
+            <img src="/media/{{ new.imagen }}" alt="mia mama mio" width="288" height="262" /><span class="hook"></span>
+        </aside>
+        <div class="article-content">
+            <h3 class="title-news2">{{ new.nombre }}</h3> 
+            {{ new.descrip|raw }}
+            <ul class="social-share">
+                <li><a href="#"><img src="/static/images/msg.png" alt="Twitter" /></a>
+                <li>
+                    <div class="fb-like" data-href="{{ SITE_URL }}noticias/{{ new.id }}/" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+                </li>
+            </ul>
+            <ul class="social-links">
+                <li><a style="cursor: pointer" class="spt" id="back-link" onclick="history.back()">Regresar</a></li>
+            </ul>
+        </div>
+    </article>
+</section>
+{% endblock %}

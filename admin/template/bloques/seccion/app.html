@@ -16,6 +16,7 @@
             </div>
         </div>
     </div>
+
     <div class="grp-row grp-cells-1 {% if errors.nombre %}grp-errors {% endif %}nombre ">
         <div class="l-2c-fluid l-d-4">
             <div class="c-1">
@@ -32,6 +33,7 @@
             </div>
         </div>
     </div>
+
     <div class="grp-row grp-cells-1 subtitulo ">
         <div class="l-2c-fluid l-d-4">
             <div class="c-1">
@@ -70,10 +72,11 @@
                 <label for="id_descrip">Descripción</label>
             </div>
             <div class="c-2">
-                <textarea id="id_descrip" rows="10" cols="40" name="descrip" class="vLargeTextField">{{ datos.descrip|raw }}</textarea>
+                <textarea id="id_descrip" rows="10" cols="40" name="descrip" class="vLargeTextField">{{ datos.descrip }}</textarea>
             </div>
         </div>
     </div>
+    
     <div class="grp-row grp-cells-1 {% if errors.position %}grp-errors {% endif %}position ">
         <div class="l-2c-fluid l-d-4">
             <div class="c-1">
@@ -89,6 +92,7 @@
             </div>
         </div>
     </div>
+
     <div class="grp-row grp-cells-1 padre ">
         <div class="l-2c-fluid l-d-4">
             <div class="c-1">

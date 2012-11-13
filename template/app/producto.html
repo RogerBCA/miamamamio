@@ -1,0 +1,143 @@
+{% extends 'app/grupo.html' %}
+
+{% block title %}{{ prod.nombre }} - Producto{% endblock %}
+
+{% block js_extra %}
+<script type="text/javascript">
+	var thanks = $('#thanks');
+	var error = $('#error');
+	{% if errors.proceso  %}error.modal('show');{% endif %}
+	{% if exito.pedido  %}thanks.modal('show');{% endif %}
+</script>
+{% endblock %}
+
+{% block sec_content %}
+
+<div class="modal hide fade" id="thanks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="content-modal">
+      <div class="modal-body bg-icon">
+        <h3 class="title-modal">Gracias</h3>
+        <p>Gracias por tu pedido, has hecho una excelente elección. Nos pondremos en contacto contigo lo más pronto posible.</p>
+      </div>
+  </div>
+</div>
+
+<div class="modal hide fade" id="error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="content-modal">
+      <div class="modal-body bg-icon">
+        <h3 class="title-modal">Error</h3>
+        <p>A ocurrido un problema...<br>Intentalo nuevamente.</p>
+      </div>
+  </div>
+</div>
+
+<section id="content">
+	<h2 class="title-content4">{{ prod.categoria }}</h2>
+	<div id="page-info" class="dotted-page">
+	    <article id="left-info">
+	        <figure class="figure-big">
+	            <img src="/lib/timthumb.php?src=/media/{{ prod.imagen }}&h=244&w=240" alt="mia mama mio" width="240" height="244" />
+	        </figure>
+	        <div class="page-article">
+	            	<h2 class="title-detail">{{ prod.nombre }}</h2>
+
+	             <h3 class="title-sub">{{ prod.codigo }}</h3>
+
+	            <div class="detail-article">
+	                {{ prod.descrip|raw }}
+	            </div>
+	            <div class="price"><span class="coin">S/.</span> {{ prod.precio }}</div>
+	            <ul class="social-share">
+	            	<!--
+	                <li><a href="#"><img src="/static/images/facebook.png" alt="Twitter" /></a>
+	                </li>-->
+	                <li><a href="#"><img src="/static/images/msg.png" alt="Twitter" /></a>
+	                </li>
+	                <li>
+						<div class="fb-like" data-href="{{ SITE_URL }}producto/{{ prod.id }}/" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+	                </li>
+	                <li>
+	                	<a href="http://pinterest.com/pin/create/button/?url={{ SITE_URL|url_encode() }}producto%2F{{ prod.id }}%2F&media={{ SITE_URL|url_encode() }}media%2F{{ prod.imagen|url_encode() }}&description={{ prod.descrip|striptags|url_encode() }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+	                </li>
+	            </ul>
+	            <ul class="social-links">
+	                <li><a style="cursor: pointer" class="spt" id="back-link" onclick="history.back()" >Regresar</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </article>
+	    <div id="right-info">
+	        	<h5 class="title-right">Para hacer tu pedido puedes elegir entre estas dos opciones:</h5>
+
+	        <ol class="list-num">
+	            <li>Llámanos al 225-2632 y haz tu pedido.</li>
+	            <li>Llena los datos del formulario</li>
+	        </ol>
+	        <form action="" id="form-order" method="post">
+	            <div class="block">
+	                <label class="label">Nombre y apellido</label>
+	                <input type="text" class="input" name="nombre" required="required" />
+	                {% if errors.nombre %}
+	                <ul class="errorlist">
+	                    <li>Obligatorio.</li>
+	                </ul>
+	                {% endif %}
+	            </div>
+	            <div class="block">
+	                <label class="label">Horario para contactarte</label>
+	                <input type="text" class="input" name="horario" required="required" />
+	                {% if errors.horario %}
+	                <ul class="errorlist">
+	                    <li>Obligatorio.</li>
+	                </ul>
+	                {% endif %}
+	            </div>
+	            <div class="block">
+	                <label class="label">Contactar por:</label>
+	                <div class="div-empty">
+	                    <label>
+	                        <input type="radio" name="contactar" value="Telefono" checked /> <span>Teléfono</span>
+	                    </label>
+	                    <label>
+	                        <input type="radio" name="contactar" value="E-mail" /> <span>e-mail</span>
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="block">
+	                <label class="label">Teléfono</label>
+	                <input type="text" class="input" name="telefono" required="required" />
+	                {% if errors.telefono %}
+	                <ul class="errorlist">
+	                    <li>Obligatorio.</li>
+	                </ul>
+	                {% endif %}
+	            </div>
+	            <div class="block">
+	                <label class="label">E-mail</label>
+	                <input type="text" class="input" name="email" required="required" />
+	                {% if errors.email %}
+	                <ul class="errorlist">
+	                    <li>Obligatorio.</li>
+	                </ul>
+	                {% endif %}
+	            </div>
+	            <div class="block">
+	                <label class="label">Cantidad</label>
+	                <input type="text" class="input small" name="cantidad" required="required" />
+	                {% if errors.cantidad %}
+	                <ul class="errorlist">
+	                    <li>Obligatorio.</li>
+	                </ul>
+	                {% endif %}
+	            </div>
+	            <fieldset class="block">
+	                <input type="submit" id="submit-order" class="spt btn" name="submit-producto" />
+	            </fieldset>
+	        </form>
+	    </div>
+	</div>
+</section>
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+{% endblock %}

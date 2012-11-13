@@ -14,9 +14,11 @@
             <li>
                 <div class="bg-{{ cycle([ '1', '2', '3', '4' ], i) }} inner-item">
                     <figure class="img-div">
-                    	<a href="#"><img src="/media/{{ prod.imagen }}" alt="mia mama mio" width="170" height="165" /></a>
+                    	<a href="/producto/{{ prod.id }}/">
+                            <img src="/lib/timthumb.php?src=/media/{{ prod.imagen }}&h=165&w=170" alt="mia mama mio" width="170" height="165" />
+                        </a>
                     </figure>
-					<h3 class="title-div-1"><a href="#">{{ prod.codigo }}</a></h3>
+					<h3 class="title-div-1"><a href="/producto/{{ prod.id }}/">{{ prod.codigo }}</a></h3>
 					<h4 class="title-div-2">{{ prod.nombre }}</h4>
                     <div class="price"><span class="coin">S/.</span> {{ prod.precio }}</div>
                 </div>

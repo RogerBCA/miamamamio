@@ -51,6 +51,7 @@ class app{
 		if( $this->errors == false ){
 			if(isset($app['active'])) $query['active'] = '1'; else $query['active'] = '0';
 
+
 			// Campos generales
 			$query['created'] 		= date('Y-m-d H:i:s');
 			$query['modified'] 		= date('Y-m-d H:i:s');
@@ -60,7 +61,8 @@ class app{
 			// Campos Adicionales
 			$query['nombre'] 	= $app['nombre'];
 			$query['imagen'] 	= upload('multimedia',$_FILES['imagen'],'archivo','True');
-
+			$exten = explode('.', $query['imagen']);
+			$query['exten']		= $this->extension($exten[1]);
 			$this->db->insert($this->tabla,$query);
 			$this->devolverID = $this->db->devolverID;
 			return true;
@@ -76,8 +78,6 @@ class app{
         if( $_FILES['imagen']['name'] != '' ){
             $imagen = upload('multimedia',$_FILES['imagen'],'archivo','False');
             if($imagen != '') $errors['imagen'] = $imagen;
-        }else {
-            $errors['imagen'] = 'Este campo es obligatorio.';
         }
 
 		//a variables
@@ -88,21 +88,34 @@ class app{
 			if(isset($app['active'])) $query['active'] = '1'; else $query['active'] = '0';
 
 			// Campos generales
-			$query['created'] 		= date('Y-m-d H:i:s');
 			$query['modified'] 		= date('Y-m-d H:i:s');
-			$query['created_by'] 	= $SESSION['iduser'];
 			$query['modified_by'] 	= $SESSION['iduser'];
 
 			// Campos Adicionales
 			$query['nombre'] 	= $app['nombre'];
-			$query['imagen'] 	= upload('multimedia',$_FILES['imagen'],'archivo','True');
+			if( $_FILES['imagen']['name'] != '' ){
+				$query['imagen'] 	= upload('multimedia',$_FILES['imagen'],'archivo','True');
+			}else{
+				$query['imagen']	= $app['imagen'];
+			}
+			$exten = explode('.', $query['imagen']);
+			$query['exten']		= $this->extension($exten[1]);
 
 			$this->db->update($this->tabla,$query,' id = '.$id);
 			$this->devolverID = $this->db->devolverID;
-			// echo $this->db->lastQuery;
 			return true;
 		}
 		return false;
+	}
+
+	public function extension($var){
+		if ( $var == 'pdf' or $var == 'doc' or $var == 'docx' ) {
+			return 'documento';
+		}elseif ( $var == 'jpg' or $var == 'png' or $var == 'bmp' or $var == 'gif' ) {
+			return 'imagen';
+		}else{
+			return 'otros';
+		}
 	}
 
 	public function eliminar($id){
